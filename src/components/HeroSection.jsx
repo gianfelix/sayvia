@@ -1,72 +1,91 @@
-import { Box, Typography, Button, Stack } from "@mui/material";
-import DesignCarousel from "./DesignCarousel";
-
-// preview desain (reusable juga di page Desain)
-const designPreviews = [
-  "/assets/images/design-1.jpg",
-  "/assets/images/design-2.jpg",
-  "/assets/images/design-3.jpg",
-];
+import { Box, Typography, Button, Stack, Container } from "@mui/material";
 
 const HeroSection = () => {
   return (
     <Box
       sx={{
         minHeight: "100vh",
-        display: "grid",
-        gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
+        display: "flex",
         alignItems: "center",
-        px: { xs: 4, md: 15 },
-        background: "linear-gradient(180deg, #FFFFFF, #FFF7ED)",
+        backgroundColor: "#F3FBF8",
       }}
     >
-      {/* FRAME KIRI */}
-      <Stack spacing={3} maxWidth={540}>
-        <Typography
-          variant="h2"
-          fontWeight={800}
-          lineHeight={1.1}
-          color="#F97316"
-        >
-          Say it! <br /> Via the new way
-        </Typography>
-
-        <Typography variant="h6" color="text.secondary">
-          Cara baru kirim undangan, no more boring invite!
-        </Typography>
-
-        <Typography color="text.secondary">
-          Ekspresikan gayamu lewat undangan digital yang fresh, modern, dan
-          anti-mainstream. Semua dalam satu tautan, tanpa ribet.
-        </Typography>
-
-        <Button
-          variant="contained"
-          size="large"
+      <Container maxWidth="xl">
+        <Box
           sx={{
-            width: "fit-content",
-            px: 5,
-            py: 1.4,
-            borderRadius: 999,
-            bgcolor: "#F97316",
-            boxShadow: "0 10px 25px rgba(249,115,22,0.35)",
-            "&:hover": { bgcolor: "#EA580C" },
+            display: "grid",
+            gridTemplateColumns: { xs: "1fr", md: "1.1fr 0.9fr" },
+            alignItems: "center",
+            gap: { xs: 6, md: 10 },
           }}
         >
-          Pesan Sekarang
-        </Button>
-      </Stack>
+          {/* LEFT CONTENT */}
+          <Stack spacing={3}>
+            {/* TITLE */}
+            <Typography variant="h2" fontWeight={900} lineHeight={1.1}>
+              <Box component="span" color="#2DD4BF">
+                Say
+              </Box>{" "}
+              <Box component="span" color="#111827">
+                it!
+              </Box>
+              <br />
+              <Box component="span" color="#F97316">
+                Via
+              </Box>{" "}
+              <Box component="span" color="#111827">
+                the new way
+              </Box>
+            </Typography>
 
-      {/* FRAME KANAN – CAROUSEL */}
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          mt: { xs: 6, md: 0 },
-        }}
-      >
-        <DesignCarousel images={designPreviews} />
-      </Box>
+            {/* DESCRIPTION */}
+            <Typography color="text.secondary" maxWidth={520}>
+              Cara baru kirim undangan, <b>no more boring invite!</b>
+              <br />
+              Ekspresikan gayamu lewat undangan digital yang{" "}
+              <i>fresh, modern</i>, dan <i>anti-mainstream</i>.
+              <br />
+              Semua dalam satu tautan, tanpa ribet.
+            </Typography>
+
+            {/* CTA */}
+            <Button
+              variant="contained"
+              sx={{
+                width: "fit-content",
+                px: 4,
+                py: 1.4,
+                borderRadius: 999,
+                fontWeight: 700,
+                bgcolor: "#F97316",
+                boxShadow: "0 10px 25px rgba(249,115,22,0.35)",
+                "&:hover": { bgcolor: "#EA580C" },
+              }}
+            >
+              Pesan Sekarang!
+            </Button>
+          </Stack>
+
+          {/* RIGHT IMAGE */}
+          <Box
+            sx={{
+              display: { xs: "none", md: "flex" },
+              justifyContent: "flex-end",
+            }}
+          >
+            <Box
+              component="img"
+              src="/assets/images/hero-phone.png"
+              alt="Preview Undangan Digital"
+              sx={{
+                width: "100%",
+                maxWidth: 420,
+                transform: "translateY(20px)",
+              }}
+            />
+          </Box>
+        </Box>
+      </Container>
     </Box>
   );
 };

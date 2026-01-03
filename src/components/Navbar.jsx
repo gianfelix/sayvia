@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 
-const menuItems = ["Home", "Desain", "FAQ"];
+const menuItems = ["Harga", "Desain", "FAQ"];
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -27,53 +27,73 @@ const Navbar = () => {
           borderBottom: "2px solid #FFE4D5",
         }}
       >
-        <Toolbar sx={{ justifyContent: "space-between" }}>
-          {/* LOGO */}
-          <Typography
-            variant="h6"
-            fontWeight={800}
-            sx={{ color: "#F97316" }}
-          >
-            SAYVIA
-          </Typography>
+        <Toolbar
+          sx={{
+            justifyContent: "space-between",
 
-          {/* DESKTOP MENU */}
-          <Box sx={{ display: { xs: "none", md: "flex" } }}>
+            mx: "auto",
+            width: "90%",
+          }}
+        >
+          {/* LEFT - LOGO */}
+          <Box sx={{ display: "flex", alignItems: "center" }}>
+            <IconButton href="/" sx={{ p: 0 }}>
+              <img
+                src="/assets/icons/logo_say_hor.png"
+                alt="Sayvia"
+                style={{
+                  height: "36px",
+                  width: "auto",
+                }}
+              />
+            </IconButton>
+          </Box>
+
+          {/* CENTER - MENU (DESKTOP) */}
+          <Box
+            sx={{
+              display: { xs: "none", md: "flex" },
+              gap: 3,
+              alignItems: "center",
+            }}
+          >
             {menuItems.map((item) => (
               <Button
                 key={item}
                 sx={{
-                  color: "#374151",
-                  fontWeight: 500,
-                  mx: 0.5,
+                  color: "#F97316",
+                  fontWeight: 600,
                   "&:hover": {
                     bgcolor: "#FFF4EC",
-                    color: "#F97316",
                   },
                 }}
               >
                 {item}
               </Button>
             ))}
+          </Box>
 
+          {/* RIGHT - CTA BUTTON (DESKTOP) */}
+          <Box sx={{ display: { xs: "none", md: "flex" } }}>
             <Button
               variant="contained"
               sx={{
-                ml: 1,
                 px: 3,
                 borderRadius: 999,
                 bgcolor: "#F97316",
+                color: "#FFFFFF",
+                fontWeight: 700,
                 boxShadow: "0 6px 16px rgba(249,115,22,0.35)",
                 "&:hover": {
                   bgcolor: "#EA580C",
                 },
               }}
             >
-              Pesan Sekarang
+              Pesan Sekarang!
             </Button>
           </Box>
 
-          {/* MOBILE HAMBURGER */}
+          {/* MOBILE MENU BUTTON */}
           <IconButton
             sx={{ display: { xs: "flex", md: "none" }, color: "#F97316" }}
             onClick={() => setOpen(true)}
@@ -83,24 +103,10 @@ const Navbar = () => {
         </Toolbar>
       </AppBar>
 
-      {/* DRAWER MOBILE */}
-      <Drawer
-        anchor="right"
-        open={open}
-        onClose={() => setOpen(false)}
-      >
-        <Box
-          sx={{
-            width: 260,
-            p: 3,
-          }}
-        >
-          <Typography
-            variant="h6"
-            fontWeight={800}
-            mb={3}
-            color="#F97316"
-          >
+      {/* MOBILE DRAWER */}
+      <Drawer anchor="right" open={open} onClose={() => setOpen(false)}>
+        <Box sx={{ width: 260, p: 3 }}>
+          <Typography variant="h6" fontWeight={800} mb={3} color="#F97316">
             SAYVIA
           </Typography>
 
@@ -111,11 +117,10 @@ const Navbar = () => {
                 fullWidth
                 sx={{
                   justifyContent: "flex-start",
-                  color: "#374151",
+                  color: "#F97316",
                   fontWeight: 600,
                   "&:hover": {
                     bgcolor: "#FFF4EC",
-                    color: "#F97316",
                   },
                 }}
                 onClick={() => setOpen(false)}
@@ -131,15 +136,16 @@ const Navbar = () => {
                 mt: 2,
                 borderRadius: 999,
                 bgcolor: "#F97316",
-                boxShadow:
-                  "0 10px 25px rgba(249,115,22,0.35)",
+                color: "#FFFFFF",
+                fontWeight: 700,
+                boxShadow: "0 10px 25px rgba(249,115,22,0.35)",
                 "&:hover": {
                   bgcolor: "#EA580C",
                 },
               }}
               onClick={() => setOpen(false)}
             >
-              Pesan Sekarang
+              Pesan Sekarang!
             </Button>
           </Stack>
         </Box>
