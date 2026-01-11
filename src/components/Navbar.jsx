@@ -22,7 +22,7 @@ const Navbar = () => {
         position="sticky"
         elevation={0}
         sx={{
-          bgcolor: "rgba(255,255,255,0.85)",
+          bgcolor: "rgba(255, 255, 255, 1)",
           backdropFilter: "blur(8px)",
           borderBottom: "2px solid #FFE4D5",
         }}
@@ -32,7 +32,8 @@ const Navbar = () => {
             justifyContent: "space-between",
 
             mx: "auto",
-            width: "90%",
+            // px: { xs: 2, md: 4 },
+            width: "85%",
           }}
         >
           {/* LEFT - LOGO */}

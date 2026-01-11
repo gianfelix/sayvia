@@ -4,10 +4,16 @@ const HeroSection = () => {
   return (
     <Box
       sx={{
-        minHeight: "100vh",
+        minHeight: "94vh",
         display: "flex",
         alignItems: "center",
-        backgroundColor: "#F3FBF8",
+        // backgroundColor: "#e9fcfbff",
+        background: "linear-gradient(180deg, #e9fcfbff 95%, #FFFFFF 100%)",
+        // backgroundImage: "url('/assets/images/Bg_Sect_One.png')",
+        // // backgroundRepeat: "stretch",
+        // backgroundPosition: "center",
+        // backgroundSize: "stretch",
+        // // py: { xs: 8, md: 0 },
       }}
     >
       <Container maxWidth="xl">

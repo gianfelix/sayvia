@@ -47,65 +47,57 @@ const ValuesSection = () => (
   <Box
     sx={{
       py: { xs: 6, md: 10 },
-      px: { xs: 3, md: 6 },
-      background: "linear-gradient(180deg, #F8FAF9 0%, #FFFFFF 100%)",
+      px: { xs: 2, md: 6 },
+      background: "#ffffffff",
     }}
   >
-    {/* TITLE */}
-    <Typography variant="h4" fontWeight={800} textAlign="left" mb={6}>
-      Kenapa harus pilih{" "}
-      <Box component="span" sx={{ color: "#2DD4BF" }}>
-        Say
-      </Box>
-      <Box component="span" sx={{ color: "#F97316" }}>
-        via
-      </Box>
-      ?
-    </Typography>
+    {/* BIG CONTAINER */}
+    <Box
+      sx={{
+        background: "#fff",
+        borderRadius: 5,
+        p: { xs: 2.5, md: 4 },
+        boxShadow: "0 20px 60px rgba(0,0,0,0.08)",
+      }}
+    >
+      {/* TITLE */}
+      <Typography variant="h4" fontWeight={800} mb={5}>
+        Kenapa harus pilih{" "}
+        <Box component="span" sx={{ color: "#2DD4BF" }}>
+          Say
+        </Box>
+        <Box component="span" sx={{ color: "#F97316" }}>
+          via
+        </Box>
+        ?
+      </Typography>
+      <Grid container>
+        {values.map((item, i) => (
+          <Grid item key={i}>
+            <Box
+              sx={{
+                p: { xs: 2, md: 4 },
+                height: "100%",
+                maxWidth: 370,
+              }}
+            >
+              {/* Icon */}
+              <Box mb={1}>
+                <img src={item.icon} width={45} height={45} alt={item.title} />
+              </Box>
 
-    {/* GRID */}
-    <Grid container spacing={3}>
-      {values.map((item, i) => (
-        <Grid item xs={12} sm={6} md={4} key={i}>
-          <Box
-            sx={{
-              // height: "auto",
-              width: "auto",
-              p: 4,
-              borderRadius: 5,
-              backgroundColor: "#FFFFFF",
-              boxShadow: "0 10px 30px rgba(0,0,0,0.06)",
-              transition: "all .3s ease",
-              "&:hover": {
-                transform: "translateY(-6px)",
-                boxShadow: "0 20px 40px rgba(249,115,22,0.2)",
-              },
-            }}
-          >
-            {/* ICON */}
-            <Box mb={1}>
-              <img
-                src={item.icon}
-                alt={item.title}
-                style={{
-                  width: 50,
-                  height: 50,
-                }}
-              />
+              {/* Text */}
+              <Typography fontWeight={750} fontSize={16} color="#F97316">
+                {item.title}
+              </Typography>
+              <Typography fontSize={15} color="text.secondary" lineHeight={1.5}>
+                {item.desc}
+              </Typography>
             </Box>
-
-            {/* TEXT */}
-            <Typography fontWeight={700} color="#F97316">
-              {item.title}
-            </Typography>
-
-            <Typography variant="body2" color="text.secondary" lineHeight={1.6}>
-              {item.desc}
-            </Typography>
-          </Box>
-        </Grid>
-      ))}
-    </Grid>
+          </Grid>
+        ))}
+      </Grid>
+    </Box>
   </Box>
 );
 
