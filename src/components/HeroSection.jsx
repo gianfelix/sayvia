@@ -1,51 +1,59 @@
 import { Box, Typography, Button, Stack, Container } from "@mui/material";
+import { useSayviaTheme } from "../theme/SayviaThemeProvider";
 
 const HeroSection = () => {
+  const { colors } = useSayviaTheme();
+
   return (
     <Box
       sx={{
         minHeight: "94vh",
         display: "flex",
         alignItems: "center",
-        // backgroundColor: "#e9fcfbff",
-        background: "linear-gradient(180deg, #e9fcfbff 95%, #FFFFFF 100%)",
-        // backgroundImage: "url('/assets/images/Bg_Sect_One.png')",
-        // // backgroundRepeat: "stretch",
-        // backgroundPosition: "center",
-        // backgroundSize: "stretch",
-        // // py: { xs: 8, md: 0 },
+        background: `linear-gradient(180deg, ${colors.backgroundLight} 90%, ${colors.white} 100%)`,
       }}
     >
       <Container maxWidth="xl">
         <Box
           sx={{
             display: "grid",
-            gridTemplateColumns: { xs: "1fr", md: "1.1fr 0.9fr" },
+            gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
             alignItems: "center",
-            gap: { xs: 6, md: 10 },
+            gap: { xs: 5, md: 10 },
           }}
         >
-          {/* LEFT CONTENT */}
-          <Stack spacing={3}>
-            {/* TITLE */}
-            <Typography variant="h2" fontWeight={900} lineHeight={1.1}>
-              <Box component="span" color="#2DD4BF">
+          {/* LEFT */}
+          <Stack spacing={4} ml={3}>
+            <Typography
+              variant="h2"
+              sx={{
+                fontWeight: 1000,
+                lineHeight: 1.1,
+                fontFamily: "'Poppins', sans-serif",
+              }}
+            >
+              <Box component="span" sx={{ color: colors.secondary }}>
                 Say
               </Box>{" "}
-              <Box component="span" color="#111827">
+              <Box component="span" sx={{ color: colors.black }}>
                 it!
               </Box>
               <br />
-              <Box component="span" color="#F97316">
+              <Box component="span" sx={{ color: colors.primary }}>
                 Via
               </Box>{" "}
-              <Box component="span" color="#111827">
+              <Box component="span" sx={{ color: colors.black }}>
                 the new way
               </Box>
             </Typography>
 
-            {/* DESCRIPTION */}
-            <Typography color="text.secondary" maxWidth={520}>
+            <Typography
+              sx={{
+                color: colors.textMuted,
+                maxWidth: 510,
+                fontFamily: "'Poppins', sans-serif",
+              }}
+            >
               Cara baru kirim undangan, <b>no more boring invite!</b>
               <br />
               Ekspresikan gayamu lewat undangan digital yang{" "}
@@ -54,18 +62,20 @@ const HeroSection = () => {
               Semua dalam satu tautan, tanpa ribet.
             </Typography>
 
-            {/* CTA */}
             <Button
-              variant="contained"
               sx={{
                 width: "fit-content",
                 px: 4,
                 py: 1.4,
                 borderRadius: 999,
                 fontWeight: 700,
-                bgcolor: "#F97316",
-                boxShadow: "0 10px 25px rgba(249,115,22,0.35)",
-                "&:hover": { bgcolor: "#EA580C" },
+                textTransform: "none",
+                backgroundColor: colors.primary,
+                color: colors.white,
+                boxShadow: "0 10px 25px rgba(249,115,22,0.3)",
+                "&:hover": {
+                  backgroundColor: colors.buttonHover,
+                },
               }}
             >
               Pesan Sekarang!

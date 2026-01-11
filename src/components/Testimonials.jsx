@@ -28,7 +28,7 @@ const Testimonials = () => (
     sx={{
       py: { xs: 8, md: 12 },
       px: { xs: 3, md: 8 },
-      background: "linear-gradient(180deg, #FFF7ED, #ffffffff)",
+      background: "linear-gradient(180deg, #e9fcfbff, #ffffffff)",
       textAlign: "center",
     }}
   >

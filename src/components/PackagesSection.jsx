@@ -1,29 +1,41 @@
+import React from "react";
 import {
-  Grid,
-  Card,
-  CardContent,
+  Box,
   Typography,
   Button,
-  Box,
+  Card,
+  CardContent,
   Chip,
+  Stack,
 } from "@mui/material";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
-const packages = [
+const colors = {
+  primary: "#F97316", // Sayvia Orange
+  secondary: "#2DD4BF", // Sayvia Teal
+  dark: "#292121",
+};
+
+const packageData = [
   {
-    name: "Basic",
-    price: "199K",
+    name: "Basic Bae",
+    price: 60000,
+    originalPrice: 65000,
+    discount: "5%",
     features: ["1 desain undangan", "1x revisi", "Publish cepat"],
   },
   {
-    name: "Medium",
-    price: "399K",
+    name: "Glow-Up",
+    price: 75000,
+    originalPrice: 82000,
+    discount: "8%",
     features: ["3 desain pilihan", "3x revisi", "Support penuh"],
-    highlight: true, // best seller
+    highlight: true,
   },
   {
-    name: "Pro",
-    price: "699K",
+    name: "All Out!",
+    price: 100000,
+    originalPrice: 112000,
+    discount: "10%",
     features: [
       "Custom desain eksklusif",
       "Revisi bebas",
@@ -32,130 +44,179 @@ const packages = [
   },
 ];
 
-const PackagesSection = () => (
-  <Box
-    sx={{
-      py: { xs: 8, md: 12 },
-      px: { xs: 3, md: 8 },
-      background: "#FFFFFF",
-      textAlign: "center",
-    }}
-  >
-    <Typography
-      variant="h4"
-      fontWeight={800}
-      mb={2}
-      color="#F97316"
+export default function PackagesSection() {
+  return (
+    <Box
+      sx={{
+        py: 10,
+        px: 4,
+        background: "linear-gradient(180deg, #ffffff 0%, #e9fcfbff 10%)",
+        textAlign: "center",
+      }}
     >
-      Paket Layanan
-    </Typography>
+      {/* TITLE */}
+      <Typography
+        sx={{
+          fontSize: { xs: 28, md: 42 },
+          fontWeight: 900,
+          color: colors.dark,
+          mb: 1,
+        }}
+      >
+        Pilih Paket Sayvia 💍
+      </Typography>
 
-    <Typography
-      color="text.secondary"
-      maxWidth={600}
-      mx="auto"
-      mb={6}
-    >
-      Pilih paket sesuai kebutuhanmu. Semua dirancang untuk tampil
-      elegan dan mudah dibagikan.
-    </Typography>
+      <Typography sx={{ color: "#6B7280", mb: 6 }}>
+        Harga jujur, desain niat, bikin undanganmu tampil premium ✨
+      </Typography>
 
-    <Grid container spacing={4} justifyContent="center">
-      {packages.map((p, i) => (
-        <Grid item xs={12} md={4} key={i}>
+      {/* PACKAGES */}
+      <Box
+        sx={{
+          display: "grid",
+          gridTemplateColumns: { xs: "1fr", md: "repeat(3,1fr)" },
+          gap: 4,
+          maxWidth: 1100,
+          mx: "auto",
+        }}
+      >
+        {packageData.map((p, i) => (
           <Card
-            elevation={0}
+            key={i}
             sx={{
-              height: "100%",
-              borderRadius: 4,
+              position: "relative",
+              overflow: "visible",
+              p: 4,
+              borderRadius: 5,
+              boxShadow: p.highlight
+                ? "0 25px 60px rgba(249,115,22,0.35)"
+                : "0 10px 30px rgba(0,0,0,0.08)",
               border: p.highlight
-                ? "2px solid #F97316"
-                : "1px solid #FFE4D5",
-              transform: p.highlight ? "scale(1.03)" : "none",
-              transition: "all .3s ease",
-              "&:hover": {
-                transform: "translateY(-10px)",
-                boxShadow: "0 25px 50px rgba(249,115,22,0.25)",
-              },
+                ? `3px solid ${colors.primary}`
+                : "1px solid #E5E7EB",
+              transform: p.highlight ? "scale(1.05)" : "none",
+              background: "#ffffff",
             }}
           >
-            <CardContent sx={{ p: 4 }}>
-              {p.highlight && (
-                <Chip
-                  label="Best Seller"
-                  sx={{
-                    mb: 2,
-                    bgcolor: "#F97316",
-                    color: "#fff",
-                    fontWeight: 600,
-                  }}
-                />
-              )}
+            {/* BEST SELLER */}
+            {p.highlight && (
+              <Chip
+                label="🔥 Best Seller"
+                sx={{
+                  position: "absolute",
+                  top: -20, // naik lebih keluar
+                  right: 24,
+                  zIndex: 2, // pastikan di atas card
+                  bgcolor: colors.primary,
+                  color: "#fff",
+                  fontWeight: 800,
+                  px: 2,
+                  py: 0.5,
+                  boxShadow: "0 8px 20px rgba(249,115,22,0.4)",
+                  borderRadius: "999px",
+                }}
+              />
+            )}
 
+            {/* DISCOUNT */}
+            <Chip
+              label={`-${p.discount}`}
+              sx={{
+                position: "absolute",
+                top: 18,
+                left: 18,
+                bgcolor: "#22C55E",
+                color: "#fff",
+                fontWeight: 800,
+                fontSize: 12,
+              }}
+            />
+
+            <CardContent>
+              {/* NAME */}
               <Typography
-                variant="h5"
-                fontWeight={700}
-                mb={1}
+                sx={{
+                  fontSize: 22,
+                  fontWeight: 800,
+                  mb: 2,
+                  color: colors.dark,
+                }}
               >
                 {p.name}
               </Typography>
 
-              <Typography
-                variant="h3"
-                fontWeight={800}
-                color="#F97316"
-                mb={3}
-              >
-                {p.price}
-              </Typography>
+              {/* PRICE */}
+              <Box mb={3}>
+                <Typography
+                  sx={{
+                    fontSize: 14,
+                    color: "#9CA3AF",
+                    textDecoration: "line-through",
+                    fontWeight: 600,
+                  }}
+                >
+                  Rp {p.originalPrice.toLocaleString("id-ID")}
+                </Typography>
 
-              <Box mb={4}>
-                {p.features.map((f, idx) => (
-                  <Box
-                    key={idx}
-                    sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      mb: 1,
-                      color: "text.secondary",
-                    }}
-                  >
-                    <CheckCircleIcon
-                      sx={{
-                        fontSize: 18,
-                        color: "#F97316",
-                        mr: 1,
-                      }}
-                    />
-                    <Typography>{f}</Typography>
-                  </Box>
-                ))}
+                <Typography
+                  sx={{
+                    fontSize: 40,
+                    fontWeight: 900,
+                    color: colors.primary,
+                    lineHeight: 1.1,
+                  }}
+                >
+                  Rp {p.price.toLocaleString("id-ID")}
+                </Typography>
+
+                <Typography
+                  sx={{
+                    fontSize: 13,
+                    color: "#16A34A",
+                    fontWeight: 600,
+                  }}
+                >
+                  Hemat {p.discount}
+                </Typography>
               </Box>
 
+              {/* FEATURES */}
+              <Stack spacing={1} mb={4}>
+                {p.features.map((f, idx) => (
+                  <Typography
+                    key={idx}
+                    sx={{
+                      fontSize: 14,
+                      color: "#374151",
+                    }}
+                  >
+                    ✔ {f}
+                  </Typography>
+                ))}
+              </Stack>
+
+              {/* CTA */}
               <Button
-                variant={p.highlight ? "contained" : "outlined"}
-                size="large"
+                fullWidth
                 sx={{
+                  py: 1.5,
                   borderRadius: 999,
-                  px: 5,
-                  fontWeight: 600,
-                  ...(p.highlight && {
-                    bgcolor: "#F97316",
-                    boxShadow:
-                      "0 10px 25px rgba(249,115,22,0.35)",
-                    "&:hover": { bgcolor: "#EA580C" },
-                  }),
+                  fontWeight: 700,
+                  bgcolor: p.highlight ? colors.primary : colors.secondary,
+                  color: "#fff",
+                  "&:hover": {
+                    bgcolor: p.highlight ? "#ea580c" : "#14b8a6",
+                  },
                 }}
               >
                 Pilih Paket
               </Button>
             </CardContent>
           </Card>
-        </Grid>
-      ))}
-    </Grid>
-  </Box>
-);
+        ))}
+      </Box>
+    </Box>
+  );
+}
 
-export default PackagesSection;
+// End of PackagesSection.jsx

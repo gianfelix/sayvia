@@ -10,11 +10,13 @@ import {
   Stack,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import { useSayviaTheme } from "../theme/SayviaThemeProvider";
 
 const menuItems = ["Harga", "Desain", "FAQ"];
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const { colors } = useSayviaTheme();
 
   return (
     <>
@@ -22,35 +24,30 @@ const Navbar = () => {
         position="sticky"
         elevation={0}
         sx={{
-          bgcolor: "rgba(255, 255, 255, 1)",
+          backgroundColor: colors.white,
           backdropFilter: "blur(8px)",
-          borderBottom: "2px solid #FFE4D5",
+          borderBottom: `2px solid ${colors.primary}20`,
         }}
       >
         <Toolbar
           sx={{
             justifyContent: "space-between",
-
-            mx: "auto",
-            // px: { xs: 2, md: 4 },
             width: "85%",
+            mx: "auto",
           }}
         >
-          {/* LEFT - LOGO */}
+          {/* LOGO */}
           <Box sx={{ display: "flex", alignItems: "center" }}>
             <IconButton href="/" sx={{ p: 0 }}>
               <img
                 src="/assets/icons/logo_say_hor.png"
                 alt="Sayvia"
-                style={{
-                  height: "36px",
-                  width: "auto",
-                }}
+                style={{ height: 36 }}
               />
             </IconButton>
           </Box>
 
-          {/* CENTER - MENU (DESKTOP) */}
+          {/* MENU DESKTOP */}
           <Box
             sx={{
               display: { xs: "none", md: "flex" },
@@ -62,10 +59,11 @@ const Navbar = () => {
               <Button
                 key={item}
                 sx={{
-                  color: "#F97316",
+                  color: colors.primary,
                   fontWeight: 600,
+                  textTransform: "none",
                   "&:hover": {
-                    bgcolor: "#FFF4EC",
+                    backgroundColor: `${colors.primary}10`,
                   },
                 }}
               >
@@ -74,19 +72,19 @@ const Navbar = () => {
             ))}
           </Box>
 
-          {/* RIGHT - CTA BUTTON (DESKTOP) */}
+          {/* CTA DESKTOP */}
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             <Button
-              variant="contained"
               sx={{
                 px: 3,
                 borderRadius: 999,
-                bgcolor: "#F97316",
-                color: "#FFFFFF",
+                backgroundColor: colors.primary,
+                color: colors.white,
                 fontWeight: 700,
+                textTransform: "none",
                 boxShadow: "0 6px 16px rgba(249,115,22,0.35)",
                 "&:hover": {
-                  bgcolor: "#EA580C",
+                  backgroundColor: "#EA580C",
                 },
               }}
             >
@@ -94,9 +92,9 @@ const Navbar = () => {
             </Button>
           </Box>
 
-          {/* MOBILE MENU BUTTON */}
+          {/* MOBILE ICON */}
           <IconButton
-            sx={{ display: { xs: "flex", md: "none" }, color: "#F97316" }}
+            sx={{ display: { xs: "flex", md: "none" }, color: colors.primary }}
             onClick={() => setOpen(true)}
           >
             <MenuIcon />
@@ -107,7 +105,14 @@ const Navbar = () => {
       {/* MOBILE DRAWER */}
       <Drawer anchor="right" open={open} onClose={() => setOpen(false)}>
         <Box sx={{ width: 260, p: 3 }}>
-          <Typography variant="h6" fontWeight={800} mb={3} color="#F97316">
+          <Typography
+            sx={{
+              fontWeight: 800,
+              mb: 3,
+              color: colors.primary,
+              fontFamily: "'Poppins', sans-serif",
+            }}
+          >
             SAYVIA
           </Typography>
 
@@ -116,35 +121,36 @@ const Navbar = () => {
               <Button
                 key={item}
                 fullWidth
+                onClick={() => setOpen(false)}
                 sx={{
                   justifyContent: "flex-start",
-                  color: "#F97316",
+                  color: colors.primary,
                   fontWeight: 600,
+                  textTransform: "none",
                   "&:hover": {
-                    bgcolor: "#FFF4EC",
+                    backgroundColor: `${colors.primary}10`,
                   },
                 }}
-                onClick={() => setOpen(false)}
               >
                 {item}
               </Button>
             ))}
 
             <Button
-              variant="contained"
               fullWidth
+              onClick={() => setOpen(false)}
               sx={{
                 mt: 2,
                 borderRadius: 999,
-                bgcolor: "#F97316",
-                color: "#FFFFFF",
+                backgroundColor: colors.primary,
+                color: colors.white,
                 fontWeight: 700,
+                textTransform: "none",
                 boxShadow: "0 10px 25px rgba(249,115,22,0.35)",
                 "&:hover": {
-                  bgcolor: "#EA580C",
+                  backgroundColor: "#EA580C",
                 },
               }}
-              onClick={() => setOpen(false)}
             >
               Pesan Sekarang!
             </Button>
