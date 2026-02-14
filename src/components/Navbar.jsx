@@ -24,9 +24,9 @@ const Navbar = () => {
         position="sticky"
         elevation={0}
         sx={{
-          backgroundColor: colors.white,
-          backdropFilter: "blur(8px)",
-          borderBottom: `2px solid ${colors.primary}20`,
+          backgroundColor: colors.backgroundLight,
+          // backdropFilter: "blur(8px)",
+          // borderBottom: `2px solid ${colors.primary}20`,
         }}
       >
         <Toolbar
@@ -38,7 +38,7 @@ const Navbar = () => {
         >
           {/* LOGO */}
           <Box sx={{ display: "flex", alignItems: "center" }}>
-            <IconButton href="/" sx={{ p: 0 }}>
+            <IconButton href="/" _hover={{ backgroundColor: "transparent" }}>
               <img
                 src="/assets/icons/logo_say_hor.png"
                 alt="Sayvia"
@@ -77,12 +77,12 @@ const Navbar = () => {
             <Button
               sx={{
                 px: 3,
-                borderRadius: 999,
+                borderRadius: "10px",
                 backgroundColor: colors.primary,
                 color: colors.white,
                 fontWeight: 700,
                 textTransform: "none",
-                boxShadow: "0 6px 16px rgba(249,115,22,0.35)",
+                // boxShadow: "0 6px 16px rgba(249,115,22,0.35)",
                 "&:hover": {
                   backgroundColor: "#EA580C",
                 },
@@ -141,7 +141,7 @@ const Navbar = () => {
               onClick={() => setOpen(false)}
               sx={{
                 mt: 2,
-                borderRadius: 999,
+                borderRadius: 14,
                 backgroundColor: colors.primary,
                 color: colors.white,
                 fontWeight: 700,

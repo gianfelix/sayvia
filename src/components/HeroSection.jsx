@@ -23,7 +23,7 @@ const HeroSection = () => {
           }}
         >
           {/* LEFT */}
-          <Stack spacing={4} ml={3}>
+          <Stack spacing={4} ml={"70px"}>
             <Typography
               variant="h2"
               sx={{
@@ -67,12 +67,12 @@ const HeroSection = () => {
                 width: "fit-content",
                 px: 4,
                 py: 1.4,
-                borderRadius: 999,
+                borderRadius: "14px",
                 fontWeight: 700,
                 textTransform: "none",
                 backgroundColor: colors.primary,
                 color: colors.white,
-                boxShadow: "0 10px 25px rgba(249,115,22,0.3)",
+                // boxShadow: "0 10px 25px rgba(249,115,22,0.3)",
                 "&:hover": {
                   backgroundColor: colors.buttonHover,
                 },
@@ -86,6 +86,7 @@ const HeroSection = () => {
           <Box
             sx={{
               display: { xs: "none", md: "flex" },
+              marginRight: "70px",
               justifyContent: "flex-end",
             }}
           >
