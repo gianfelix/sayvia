@@ -1,82 +1,132 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   Typography,
   Button,
   Card,
   CardContent,
-  Chip,
   Stack,
+  Collapse,
+  Divider,
 } from "@mui/material";
 
 const colors = {
-  primary: "#F97316", // Sayvia Orange
-  secondary: "#2DD4BF", // Sayvia Teal
+  primary: "#F97316",
+  secondary: "#2DD4BF",
   dark: "#292121",
 };
 
 const packageData = [
   {
     name: "Basic Bae",
-    price: 60000,
-    originalPrice: 65000,
+    price: 53000,
+    originalPrice: 56000,
     discount: "5%",
-    features: ["1 desain undangan", "1x revisi", "Publish cepat"],
+    features: [
+      "Masa aktif sampai max. 14 hari",
+      "Desain Basic Bae",
+      "FREE max. 1x revisi",
+      "FREE reschedule",
+      "Penyesuaian teks bahasa",
+    ],
+    special: [
+      "Link Custom",
+      "Background Musik",
+      "Google Maps",
+      "Galeri Foto max. 3",
+    ],
   },
   {
     name: "Glow-Up",
-    price: 75000,
-    originalPrice: 82000,
-    discount: "8%",
-    features: ["3 desain pilihan", "3x revisi", "Support penuh"],
+    price: 89000,
+    originalPrice: 98000,
+    discount: "47%",
     highlight: true,
+    features: [
+      "Masa aktif sampai max. 14 hari",
+      "Desain Glow-Up",
+      "FREE max. 3x revisi",
+      "FREE reschedule",
+      "Penyesuaian teks bahasa",
+    ],
+    special: [
+      "Love Story",
+      "Kirim Ucapan & Doa",
+      "Google Maps",
+      "Galeri Foto max. 6",
+      "Countdown Timer",
+    ],
   },
   {
     name: "All Out!",
-    price: 100000,
-    originalPrice: 112000,
-    discount: "10%",
+    price: 153000,
+    originalPrice: 158000,
+    discount: "3%",
     features: [
-      "Custom desain eksklusif",
-      "Revisi bebas",
-      "Prioritas pengerjaan",
+      "Masa aktif sampai max. 14 hari",
+      "Desain All Out!",
+      "FREE max. 5x revisi",
+      "FREE reschedule",
+      "Penyesuaian teks bahasa",
+    ],
+    special: [
+      "Semua fitur Glow-Up",
+      "FREE URL Khusus",
+      "RSVP Premium",
+      "Galeri Foto max. 10",
+      "Video max. 1",
     ],
   },
 ];
 
 export default function PackagesSection() {
+  const [expanded, setExpanded] = useState(null);
+
+  const handleToggle = (index) => {
+    setExpanded(expanded === index ? null : index);
+  };
+
   return (
     <Box
       sx={{
         py: 10,
         px: 4,
-        background: "linear-gradient(180deg, #ffffff 0%, #e9fcfbff 10%)",
         textAlign: "center",
+        background: "linear-gradient(180deg, #ffffff 0%, #f6fffd 15%)",
       }}
     >
       {/* TITLE */}
       <Typography
         sx={{
-          fontSize: { xs: 28, md: 42 },
-          fontWeight: 900,
-          color: colors.dark,
+          fontSize: "23px",
+          fontWeight: 800,
+          color: colors.secondary,
           mb: 1,
         }}
       >
-        Pilih Paket Sayvia 💍
+        Pilih Paket Terbaik untuk Hari Spesialmu!
       </Typography>
 
-      <Typography sx={{ color: "#6B7280", mb: 6 }}>
-        Harga jujur, desain niat, bikin undanganmu tampil premium ✨
+      <Typography
+        sx={{
+          fontSize: "15px",
+          color: "#6B7280",
+          mb: 8,
+          maxWidth: 650,
+          mx: "auto",
+        }}
+      >
+        Sayvia siap bantu bikin undangan digital kamu makin kece tanpa bikin
+        dompet kaget. Pilih paket yang paling cocok untuk hari spesialmu!
       </Typography>
 
-      {/* PACKAGES */}
+      {/* GRID */}
       <Box
         sx={{
           display: "grid",
-          gridTemplateColumns: { xs: "1fr", md: "repeat(3,1fr)" },
+          gridTemplateColumns: { xs: "1fr", md: "repeat(3, 1fr)" },
           gap: 4,
-          maxWidth: 1100,
+          maxWidth: 1200,
           mx: "auto",
         }}
       >
@@ -84,75 +134,40 @@ export default function PackagesSection() {
           <Card
             key={i}
             sx={{
-              position: "relative",
-              overflow: "visible",
-              p: 4,
               borderRadius: 5,
+              overflow: "hidden",
+              position: "relative",
               boxShadow: p.highlight
-                ? "0 25px 60px rgba(249,115,22,0.35)"
+                ? "0 25px 50px rgba(0,0,0,0.15)"
                 : "0 10px 30px rgba(0,0,0,0.08)",
-              border: p.highlight
-                ? `3px solid ${colors.primary}`
-                : "1px solid #E5E7EB",
               transform: p.highlight ? "scale(1.05)" : "none",
-              background: "#ffffff",
+              border: p.highlight
+                ? `2px solid ${colors.secondary}`
+                : "1px solid #e5e7eb",
             }}
           >
-            {/* BEST SELLER */}
-            {p.highlight && (
-              <Chip
-                label="🔥 Best Seller"
-                sx={{
-                  position: "absolute",
-                  top: -20, // naik lebih keluar
-                  right: 24,
-                  zIndex: 2, // pastikan di atas card
-                  bgcolor: colors.primary,
-                  color: "#fff",
-                  fontWeight: 800,
-                  px: 2,
-                  py: 0.5,
-                  boxShadow: "0 8px 20px rgba(249,115,22,0.4)",
-                  borderRadius: "999px",
-                }}
-              />
-            )}
-
-            {/* DISCOUNT */}
-            <Chip
-              label={`-${p.discount}`}
+            {/* HEADER */}
+            <Box
               sx={{
-                position: "absolute",
-                top: 18,
-                left: 18,
-                bgcolor: "#22C55E",
-                color: "#fff",
-                fontWeight: 800,
-                fontSize: 12,
+                background: p.highlight ? colors.secondary : "#ffffff",
+                color: p.highlight ? "#fff" : colors.secondary,
+                py: 3,
+                textAlign: "center",
               }}
-            />
-
-            <CardContent>
-              {/* NAME */}
-              <Typography
-                sx={{
-                  fontSize: 22,
-                  fontWeight: 800,
-                  mb: 2,
-                  color: colors.dark,
-                }}
-              >
+            >
+              <Typography fontSize="18px" fontWeight={800}>
                 {p.name}
               </Typography>
+            </Box>
 
+            <CardContent sx={{ p: 4 }}>
               {/* PRICE */}
-              <Box mb={3}>
+              <Box textAlign="center" mb={3}>
                 <Typography
                   sx={{
-                    fontSize: 14,
-                    color: "#9CA3AF",
+                    fontSize: "10px",
                     textDecoration: "line-through",
-                    fontWeight: 600,
+                    color: "#9CA3AF",
                   }}
                 >
                   Rp {p.originalPrice.toLocaleString("id-ID")}
@@ -160,56 +175,95 @@ export default function PackagesSection() {
 
                 <Typography
                   sx={{
-                    fontSize: 40,
+                    fontSize: "26px",
                     fontWeight: 900,
-                    color: colors.primary,
-                    lineHeight: 1.1,
+                    color: p.highlight ? colors.secondary : colors.dark,
                   }}
                 >
                   Rp {p.price.toLocaleString("id-ID")}
                 </Typography>
-
-                <Typography
-                  sx={{
-                    fontSize: 13,
-                    color: "#16A34A",
-                    fontWeight: 600,
-                  }}
-                >
-                  Hemat {p.discount}
-                </Typography>
               </Box>
 
-              {/* FEATURES */}
-              <Stack spacing={1} mb={4}>
+              <Divider sx={{ mb: 2 }} />
+
+              {/* FITUR STANDAR */}
+              <Typography
+                sx={{
+                  fontSize: "12px",
+                  fontWeight: 700,
+                  mb: 1,
+                  textAlign: "left",
+                }}
+              >
+                FITUR STANDAR
+              </Typography>
+
+              <Stack spacing={1} mb={2}>
                 {p.features.map((f, idx) => (
                   <Typography
                     key={idx}
-                    sx={{
-                      fontSize: 14,
-                      color: "#374151",
-                    }}
+                    sx={{ fontSize: "12px", textAlign: "left" }}
                   >
                     ✔ {f}
                   </Typography>
                 ))}
               </Stack>
 
+              {/* EXPAND BUTTON */}
+              <Typography
+                onClick={() => handleToggle(i)}
+                sx={{
+                  fontSize: "12px",
+                  fontWeight: 700,
+                  color: colors.primary,
+                  cursor: "pointer",
+                  textAlign: "left",
+                  mb: 1,
+                }}
+              >
+                {expanded === i ? "Tutup Detail ▲" : "Lihat Detail ▼"}
+              </Typography>
+
+              {/* FITUR KHUSUS */}
+              <Collapse in={expanded === i}>
+                <Divider sx={{ my: 2 }} />
+
+                <Typography
+                  sx={{
+                    fontSize: "12px",
+                    fontWeight: 700,
+                    mb: 1,
+                    textAlign: "left",
+                  }}
+                >
+                  FITUR KHUSUS
+                </Typography>
+
+                <Stack spacing={1} mb={2}>
+                  {p.special.map((f, idx) => (
+                    <Typography
+                      key={idx}
+                      sx={{ fontSize: "12px", textAlign: "left" }}
+                    >
+                      ✔ {f}
+                    </Typography>
+                  ))}
+                </Stack>
+              </Collapse>
+
               {/* CTA */}
               <Button
                 fullWidth
                 sx={{
-                  py: 1.5,
+                  mt: 2,
                   borderRadius: 999,
                   fontWeight: 700,
-                  bgcolor: p.highlight ? colors.primary : colors.secondary,
+                  bgcolor: colors.primary,
                   color: "#fff",
-                  "&:hover": {
-                    bgcolor: p.highlight ? "#ea580c" : "#14b8a6",
-                  },
+                  "&:hover": { bgcolor: "#ea580c" },
                 }}
               >
-                Pilih Paket
+                Pesan Sekarang!
               </Button>
             </CardContent>
           </Card>
@@ -218,5 +272,3 @@ export default function PackagesSection() {
     </Box>
   );
 }
-
-// End of PackagesSection.jsx

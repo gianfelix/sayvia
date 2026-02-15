@@ -10,7 +10,7 @@ const HeroSection = () => {
         minHeight: "94vh",
         display: "flex",
         alignItems: "center",
-        background: `linear-gradient(180deg, ${colors.backgroundLight} 90%, ${colors.white} 100%)`,
+        background: `linear-gradient(180deg, ${colors.backgroundLight} 100%, ${colors.white} 100%)`,
       }}
     >
       <Container maxWidth="xl">

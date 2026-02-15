@@ -1,104 +1,147 @@
 import { Grid, Box, Typography } from "@mui/material";
+import { useSayviaTheme } from "../theme/SayviaThemeProvider";
 
 const values = [
   {
     title: "Harga Terjangkau",
     desc: "Harga paket ramah di kantong, cocok untuk semua kalangan.",
-    icon: "/assets/icons/Icon_Harga.png",
+    icon: "/assets/icons/1_Harga_terjangkau.webp",
   },
   {
     title: "Desain Beragam",
     desc: "Tersedia 100+ template desain kekinian yang bisa disesuaikan.",
-    icon: "/assets/icons/Icon_Desain.png",
+    icon: "/assets/icons/2_Desain_Beragam.webp",
   },
   {
     title: "Proses Cepat",
     desc: "Pesan hari ini, undangan digital bisa tayang dalam <24 jam.",
-    icon: "/assets/icons/Icon_Cepat.png",
+    icon: "/assets/icons/3_Proses_Cepat.webp",
   },
   {
     title: "Keamanan Ekstra",
     desc: "Fitur keamanan tambahan agar undangan bisa dibagikan tanpa khawatir.",
-    icon: "/assets/icons/Icon_Keamanan.png",
+    icon: "/assets/icons/4_Keamanan_Ekstra.webp",
   },
   {
     title: "Fitur Lengkap",
     desc: "Semua fitur tersedia agar praktis digunakan tanpa ribet.",
-    icon: "/assets/icons/Icon_Fitur.png",
+    icon: "/assets/icons/5_Fitur_Lengkap.webp",
   },
   {
     title: "Pelayanan Terbaik",
     desc: "Tim kami selalu siap membantu agar proses terasa nyaman.",
-    icon: "/assets/icons/Icon_Servis.png",
+    icon: "/assets/icons/6_Pelayanan_Terbaik.webp",
   },
   {
     title: "Ramah Lingkungan",
     desc: "Tanpa cetak kertas dan plastik, lebih ramah lingkungan.",
-    icon: "/assets/icons/Icon_Ramah Lingkungan.png",
+    icon: "/assets/icons/7_Ramah_Lingkungan.webp",
   },
   {
     title: "Kualitas Profesional",
     desc: "Dibuat dengan standar profesional agar terlihat berkelas.",
-    icon: "/assets/icons/Icon_Kualitas.png",
+    icon: "/assets/icons/8_Kualitas_Profesional.webp",
   },
 ];
 
-const ValuesSection = () => (
-  <Box
-    sx={{
-      py: { xs: 6, md: 10 },
-      px: { xs: 2, md: 6 },
-      background: "#ffffffff",
-    }}
-  >
-    {/* BIG CONTAINER */}
+const ValuesSection = () => {
+  const { colors } = useSayviaTheme();
+
+  return (
     <Box
       sx={{
-        background: "#fff",
-        borderRadius: 5,
-        p: { xs: 2.5, md: 4 },
-        boxShadow: "0 20px 60px rgba(0,0,0,0.08)",
+        py: { xs: 6, md: 10 },
+        px: { xs: 2, md: 6 },
+        background: `linear-gradient(180deg, ${colors.backgroundLight} 30%, ${colors.white} 40%)`,
       }}
     >
-      {/* TITLE */}
-      <Typography variant="h4" fontWeight={800} mb={5}>
-        Kenapa harus pilih{" "}
-        <Box component="span" sx={{ color: "#2DD4BF" }}>
-          Say
-        </Box>
-        <Box component="span" sx={{ color: "#F97316" }}>
-          via
-        </Box>
-        ?
-      </Typography>
-      <Grid container>
-        {values.map((item, i) => (
-          <Grid item key={i}>
-            <Box
-              sx={{
-                p: { xs: 2, md: 4 },
-                height: "100%",
-                maxWidth: 370,
-              }}
-            >
-              {/* Icon */}
-              <Box mb={1}>
-                <img src={item.icon} width={45} height={45} alt={item.title} />
-              </Box>
+      {/* Container */}
+      <Box
+        sx={{
+          maxWidth: "1540px",
+          mx: "auto",
+          background: colors.white,
+          borderRadius: 5,
+          p: { xs: 3, md: 6 },
+          boxShadow: "15px 25px 60px rgba(0,0,0,0.2)",
+        }}
+      >
+        {/* Title */}
+        <Typography
+          sx={{
+            fontSize: { xs: "1.42rem", md: "2.33rem" },
+            fontWeight: 900,
+            mb: 6,
+            textAlign: "left",
+          }}
+        >
+          Kenapa harus pilih{" "}
+          <Box component="span" sx={{ color: colors.secondary }}>
+            Say
+          </Box>
+          <Box component="span" sx={{ color: colors.primary }}>
+            via
+          </Box>
+          ?
+        </Typography>
 
-              {/* Text */}
-              <Typography fontWeight={750} fontSize={16} color="#F97316">
-                {item.title}
-              </Typography>
-              <Typography fontSize={15} color="text.secondary" lineHeight={1.5}>
-                {item.desc}
-              </Typography>
-            </Box>
-          </Grid>
-        ))}
-      </Grid>
+        {/* Values Grid */}
+        <Grid container spacing={3}>
+          {values.map((item, i) => (
+            <Grid item xs={10} sm={4} md={2} key={i}>
+              <Box
+                sx={{
+                  p: 3,
+                  borderRadius: 4,
+                  height: "100%",
+                  maxWidth: 300,
+                  // transition: "all .3s ease",
+                  // "&:hover": {
+                  //   transform: "translateY(-6px)",
+                  //   boxShadow: "0 15px 40px rgba(249,115,22,0.15)",
+                  // },
+                }}
+              >
+                {/* Icon */}
+                <Box mb={2}>
+                  <img
+                    src={item.icon}
+                    width={50}
+                    height={50}
+                    style={{ objectFit: "contain" }}
+                    alt={item.title}
+                  />
+                </Box>
+
+                {/* Title */}
+                <Typography
+                  sx={{
+                    fontWeight: 800,
+                    fontSize: 16,
+                    color: colors.primary,
+                    mb: 1,
+                  }}
+                >
+                  {item.title}
+                </Typography>
+
+                {/* Description */}
+                <Typography
+                  sx={{
+                    fontSize: 14,
+                    color: colors.textSecondary,
+                    lineHeight: 1.6,
+                  }}
+                >
+                  {item.desc}
+                </Typography>
+              </Box>
+            </Grid>
+          ))}
+        </Grid>
+      </Box>
     </Box>
-  </Box>
-);
+  );
+};
 
 export default ValuesSection;
