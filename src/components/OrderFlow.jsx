@@ -1,132 +1,183 @@
-import { Box, Typography, Grid, Card, CardContent } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
-import AssignmentIcon from "@mui/icons-material/Assignment";
-import PaletteIcon from "@mui/icons-material/Palette";
+import EditIcon from "@mui/icons-material/Edit";
 import PaymentsIcon from "@mui/icons-material/Payments";
-import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
+import SendIcon from "@mui/icons-material/Send";
 
 const steps = [
   {
-    title: "Chat via WhatsApp",
-    desc: "Hubungi tim Sayvia melalui WhatsApp di 08xxxxx untuk mulai pemesanan.",
-    icon: <WhatsAppIcon />,
+    title: "Hubungi & Pesan",
+    desc: (
+      <>
+        Hubungi tim Sayvia melalui <b>WhatsApp</b> atau klik tombol{" "}
+        <span style={{ color: "#0ea5a4", fontWeight: 600 }}>
+          Pesan Sekarang
+        </span>{" "}
+        untuk memesan undangan digital.
+      </>
+    ),
+    icon: <WhatsAppIcon fontSize="small" />,
   },
   {
-    title: "Isi Data Acara",
-    desc: "Kami kirimkan formulir, kamu tinggal isi detail acara dengan mudah.",
-    icon: <AssignmentIcon />,
+    title: "Isi Data, Pilih Paket, & Tentukan Desain",
+    desc: (
+      <>
+        Isi <b>formulir</b> yang disediakan, lalu{" "}
+        <span style={{ color: "#0ea5a4" }}>pilih paket</span> yang diinginkan,
+        dan <span style={{ color: "#0ea5a4" }}>pilih desain</span> yang kamu
+        sukai.
+      </>
+    ),
+    icon: <EditIcon fontSize="small" />,
   },
   {
-    title: "Pilih Paket & Desain",
-    desc: "Tentukan paket dan desain undangan sesuai dengan gaya acara kamu.",
-    icon: <PaletteIcon />,
+    title: "Bayar & Konfirmasi",
+    desc: (
+      <>
+        <span style={{ color: "#0ea5a4", fontWeight: 600 }}>
+          Lakukan pembayaran
+        </span>{" "}
+        setelah invoice dikirimkan dan kirim bukti pembayaran kepada tim
+        Sayvia.
+      </>
+    ),
+    icon: <PaymentsIcon fontSize="small" />,
   },
   {
-    title: "Konfirmasi & Bayar",
-    desc: "Setelah harga disepakati, lakukan pembayaran untuk memulai proses.",
-    icon: <PaymentsIcon />,
-  },
-  {
-    title: "Undangan Diproses",
-    desc: "Tim kami langsung mengerjakan undanganmu sampai siap dibagikan.",
-    icon: <RocketLaunchIcon />,
+    title: "Proses, Siap, & Bagikan",
+    desc: (
+      <>
+        Tim Sayvia <b>langsung mengerjakan</b> undangan digitalmu sampai{" "}
+        <span style={{ color: "#0ea5a4", fontWeight: 600 }}>
+          siap dibagikan
+        </span>{" "}
+        kepada tamu.
+      </>
+    ),
+    icon: <SendIcon fontSize="small" />,
   },
 ];
 
-const OrderFlow = () => (
-  <Box
-    sx={{
-      py: { xs: 8, md: 12 },
-      px: { xs: 3, md: 8 },
-      textAlign: "center",
-      background: "#e9fcfbff",
-    }}
-  >
-    <Typography variant="h4" fontWeight={800} mb={2} color="#F97316">
-      Alur Pemesanan
-    </Typography>
-
-    <Typography color="text.secondary" maxWidth={600} mx="auto" mb={6}>
-      Proses sederhana dan cepat, dari pemesanan hingga undangan siap dibagikan.
-    </Typography>
-
-    <Grid
-      container
-      spacing={4}
-      justifyContent="center"
-      sx={{ position: "relative" }}
+export default function OrderFlow() {
+  return (
+    <Box
+      sx={{
+        py: { xs: 8, md: 12 },
+        px: { xs: 3, md: 10 },
+        background: "#ffffff",
+      }}
     >
-      {steps.map((step, i) => (
-        <Grid item xs={12} md={2.2} key={i} sx={{ position: "relative" }}>
-          <Card
-            elevation={0}
-            sx={{
-              height: "100%",
-              borderRadius: 4,
-              border: "1px solid #FFE4D5",
-              position: "relative",
-              zIndex: 1,
-              background: "#fff",
-              transition: "all .35s ease",
-              "&:hover": {
-                transform: "translateY(-10px)",
-                boxShadow: "0 20px 40px rgba(249,115,22,0.25)",
-                borderColor: "#F97316",
-              },
-            }}
-          >
-            <CardContent sx={{ p: 4, textAlign: "center" }}>
-              {/* STEP CIRCLE */}
-              <Box
+      {/* TITLE */}
+      <Box maxWidth={1100} mx="auto" mb={8}>
+        <Typography fontSize={20} fontWeight={700} mb={1}>
+          Cuma{" "}
+          <span style={{ color: "#F97316" }}>4 langkah</span>, undangan digital{" "}
+          <span style={{ color: "#F97316" }}>langsung jadi!</span>
+        </Typography>
+
+        <Typography fontSize={18} fontWeight={600}>
+          Segampang itu —{" "}
+          <span style={{ color: "#0ea5a4" }}>
+            yuk mulai pesan
+          </span>{" "}
+          undangan digital kamu{" "}
+          <span style={{ color: "#0ea5a4" }}>sekarang!</span>
+        </Typography>
+      </Box>
+
+      {/* CONTENT */}
+      <Box
+        sx={{
+          display: "grid",
+          gridTemplateColumns: { xs: "1fr", md: "1fr 1.1fr" },
+          gap: 6,
+          maxWidth: 1100,
+          mx: "auto",
+          alignItems: "center",
+        }}
+      >
+        {/* MOCKUP IMAGE */}
+        <Box
+          sx={{
+            width: "100%",
+            height: 500,
+            borderRadius: 6,
+            background: "#d1d5db",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            color: "#555",
+            fontSize: 20,
+          }}
+        >
+          Mockup Image
+        </Box>
+
+        {/* STEPS */}
+        <Box>
+          {steps.map((step, index) => (
+            <Box
+              key={index}
+              sx={{
+                position: "relative",
+                background: "#fff",
+                borderRadius: 4,
+                p: 4,
+                mb: 3,
+                boxShadow: "0 10px 25px rgba(0,0,0,0.05)",
+                border: "1px solid #e5e7eb",
+              }}
+            >
+              {/* BIG NUMBER */}
+              <Typography
                 sx={{
-                  width: 56,
-                  height: 56,
-                  mx: "auto",
-                  mb: 2,
-                  borderRadius: "50%",
-                  background: "linear-gradient(135deg, #F97316, #FDBA74)",
-                  color: "#fff",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontSize: 22,
-                  fontWeight: 900,
-                  boxShadow: "0 8px 20px rgba(249,115,22,0.4)",
+                  position: "absolute",
+                  right: 20,
+                  top: 10,
+                  fontSize: 80,
+                  fontWeight: 800,
+                  color: "#e5e7eb",
+                  zIndex: 0,
                 }}
               >
-                {i + 1}
-              </Box>
+                {index + 1}
+              </Typography>
 
               {/* ICON */}
               <Box
                 sx={{
-                  width: 48,
-                  height: 48,
-                  mx: "auto",
-                  mb: 2,
-                  color: "#F97316",
+                  width: 36,
+                  height: 36,
+                  borderRadius: "50%",
+                  background: "#0ea5a4",
+                  color: "#fff",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  fontSize: 30,
+                  mb: 2,
+                  position: "relative",
+                  zIndex: 1,
                 }}
               >
                 {step.icon}
               </Box>
 
-              <Typography fontWeight={800} mb={1}>
+              <Typography fontWeight={700} mb={1} position="relative" zIndex={1}>
                 {step.title}
               </Typography>
 
-              <Typography fontSize={14} color="text.secondary">
+              <Typography
+                fontSize={14}
+                color="text.secondary"
+                position="relative"
+                zIndex={1}
+              >
                 {step.desc}
               </Typography>
-            </CardContent>
-          </Card>
-        </Grid>
-      ))}
-    </Grid>
-  </Box>
-);
-
-export default OrderFlow;
+            </Box>
+          ))}
+        </Box>
+      </Box>
+    </Box>
+  );
+}

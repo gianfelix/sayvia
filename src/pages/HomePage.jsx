@@ -16,8 +16,8 @@ const HomePage = () => {
       <ValuesSection />
       <PackagesSection />
       <OrderFlow />
-      <Testimonials />
       <FAQSection />
+      <Testimonials />
       <CTASection />
       <Footer />
     </>
