@@ -5,7 +5,7 @@ const teal = "#14B8A6";
 
 const Footer = () => {
   return (
-    <Box sx={{ background: "#F1F5F9", pt: 8 }}>
+    <Box sx={{ background: "#ffffff", pt: 8 }}>
       {/* MAIN FOOTER */}
       <Box
         sx={{
@@ -23,16 +23,7 @@ const Footer = () => {
       >
         {/* LEFT - LOGO & DESC */}
         <Box>
-          <Typography
-            sx={{
-              fontSize: 40,
-              fontWeight: 900,
-              color: teal,
-              mb: 2,
-            }}
-          >
-            Say<span style={{ color: orange }}>via</span>
-          </Typography>
+          <img src="assets/icons/logo_say_hor.png" width={250} alt="Sayvia Logo" />
 
           <Typography sx={{ fontSize: 14, color: "#555", lineHeight: 1.7 }}>
             Sayvia hadir sebagai cara baru kirim undangan digital yang{" "}
@@ -108,13 +99,13 @@ const Footer = () => {
                   justifyContent: "center",
                 }}
               >
-                <img src="assets/icons/1_WA.webp" width={18} alt="wa" />
+                <img src="assets/icons/1_WA.webp" width={32} alt="wa" />
               </Box>
               <Box>
                 <Typography sx={{ fontSize: 12, color: "#777" }}>
                   WhatsApp
                 </Typography>
-                <Typography sx={{ fontSize: 14 }}>0800 0000 0000</Typography>
+                <Typography sx={{ fontSize: 14, color: "#777" }}>0800 0000 0000</Typography>
               </Box>
             </Stack>
 
@@ -131,13 +122,13 @@ const Footer = () => {
                   justifyContent: "center",
                 }}
               >
-                <img src="assets/icons/2_Email.webp" width={18} alt="email" />
+                <img src="assets/icons/2_Email.webp" width={32} alt="email" />
               </Box>
               <Box>
                 <Typography sx={{ fontSize: 12, color: "#777" }}>
                   Email
                 </Typography>
-                <Typography sx={{ fontSize: 14 }}>
+                <Typography sx={{ fontSize: 14, color: "#777" }}>
                   sayvia.digital@gmail.com
                 </Typography>
               </Box>
@@ -156,13 +147,13 @@ const Footer = () => {
                   justifyContent: "center",
                 }}
               >
-                <img src="assets/icons/3_Ig.webp" width={18} alt="ig" />
+                <img src="assets/icons/3_Ig.webp" width={32} alt="ig" />
               </Box>
               <Box>
                 <Typography sx={{ fontSize: 12, color: "#777" }}>
                   Instagram
                 </Typography>
-                <Typography sx={{ fontSize: 14 }}>@sayvia.id</Typography>
+                <Typography sx={{ fontSize: 14, color: "#777" }}>@sayvia.id</Typography>
               </Box>
             </Stack>
 
@@ -179,13 +170,13 @@ const Footer = () => {
                   justifyContent: "center",
                 }}
               >
-                <img src="assets/icons/4_Tt.webp" width={18} alt="tiktok" />
+                <img src="assets/icons/4_Tt.webp" width={32} alt="tiktok" />
               </Box>
               <Box>
                 <Typography sx={{ fontSize: 12, color: "#777" }}>
                   TikTok
                 </Typography>
-                <Typography sx={{ fontSize: 14 }}>@sayvia.id</Typography>
+                <Typography sx={{ fontSize: 14, color: "#777" }}>@sayvia.id</Typography>
               </Box>
             </Stack>
 
@@ -202,13 +193,13 @@ const Footer = () => {
                   justifyContent: "center",
                 }}
               >
-                <img src="assets/icons/5_web.webp" width={18} alt="web" />
+                <img src="assets/icons/5_web.webp" width={32} alt="web" />
               </Box>
               <Box>
                 <Typography sx={{ fontSize: 12, color: "#777" }}>
                   Website
                 </Typography>
-                <Typography sx={{ fontSize: 14 }}>www.sayvia.my.id</Typography>
+                <Typography sx={{ fontSize: 14, color: "#777" }}>www.sayvia.my.id</Typography>
               </Box>
             </Stack>
           </Stack>
@@ -218,11 +209,11 @@ const Footer = () => {
       {/* COPYRIGHT */}
       <Box
         sx={{
-          borderTop: "1px solid #E5E7EB",
+          borderTop: "1px solid #dfdfdf",
           textAlign: "center",
           py: 3,
           fontSize: 14,
-          color: "#666",
+          color: "#494949",
         }}
       >
         Copyright © 2026 Sayvia • All Rights Reserved

@@ -48,21 +48,11 @@ export default function FAQSection() {
         FAQ
       </Typography>
 
-      <Typography
-        textAlign="center"
-        fontSize={18}
-        fontWeight={600}
-        mb={1}
-      >
+      <Typography textAlign="center" fontSize={18} fontWeight={600} mb={0}>
         Masih bingung soal layanan undangan digital Sayvia?
       </Typography>
 
-      <Typography
-        textAlign="center"
-        fontSize={18}
-        fontWeight={600}
-        mb={8}
-      >
+      <Typography textAlign="center" fontSize={18} fontWeight={600} mb={8}>
         Santai, cek semua jawabannya di FAQ ini ya
       </Typography>
 
@@ -72,7 +62,7 @@ export default function FAQSection() {
           display: "grid",
           gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
           gap: 3,
-          maxWidth: 1100,
+          maxWidth: 1150,
           mx: "auto",
         }}
       >
@@ -84,7 +74,7 @@ export default function FAQSection() {
             sx={{
               borderRadius: 3,
               border: "1.5px solid #F97316",
-              background: "#FFF7ED",
+              background: "#ffffff",
               "&:before": { display: "none" },
             }}
           >
@@ -109,16 +99,14 @@ export default function FAQSection() {
                 </Typography>
 
                 {/* QUESTION */}
-                <Typography fontWeight={600}>
+                <Typography color="#F97316" fontWeight={500}>
                   {faq.q}
                 </Typography>
               </Box>
             </AccordionSummary>
 
             <AccordionDetails sx={{ px: 7, pb: 3 }}>
-              <Typography color="text.secondary">
-                {faq.a}
-              </Typography>
+              <Typography color="text.secondary">{faq.a}</Typography>
             </AccordionDetails>
           </Accordion>
         ))}
