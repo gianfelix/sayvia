@@ -17,8 +17,8 @@ const HomePage = () => {
       <PackagesSection />
       <OrderFlow />
       <FAQSection />
-      <Testimonials />
-      <CTASection />
+      {/* <Testimonials /> */}
+      {/* <CTASection /> */}
       <Footer />
     </>
   );

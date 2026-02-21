@@ -1,34 +1,37 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Icon, Typography } from "@mui/material";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import EditIcon from "@mui/icons-material/Edit";
 import PaymentsIcon from "@mui/icons-material/Payments";
 import SendIcon from "@mui/icons-material/Send";
+import { Image } from "@mui/icons-material";
 
 const steps = [
   {
     title: "Hubungi & Pesan",
     desc: (
       <>
-        Hubungi tim Sayvia melalui <b>WhatsApp</b> atau klik tombol{" "}
+        Hubungi tim Sayvia melalui{" "}
+        <span style={{ color: "#0ea5a4", fontWeight: 600 }}>WhatsApp</span> atau
+        klik tombol{" "}
         <span style={{ color: "#0ea5a4", fontWeight: 600 }}>
           Pesan Sekarang
         </span>{" "}
         untuk memesan undangan digital.
       </>
     ),
-    icon: <WhatsAppIcon fontSize="small" />,
+    icon: "assets/icons/01.webp",
   },
   {
     title: "Isi Data, Pilih Paket, & Tentukan Desain",
     desc: (
       <>
-        Isi <b>formulir</b> yang disediakan, lalu{" "}
+        <span style={{ color: "#0ea5a4" }}>Isi formulir</span> yang disediakan, lalu{" "}
         <span style={{ color: "#0ea5a4" }}>pilih paket</span> yang diinginkan,
         dan <span style={{ color: "#0ea5a4" }}>pilih desain</span> yang kamu
         sukai.
       </>
     ),
-    icon: <EditIcon fontSize="small" />,
+    icon: "assets/icons/02.webp",
   },
   {
     title: "Bayar & Konfirmasi",
@@ -37,24 +40,27 @@ const steps = [
         <span style={{ color: "#0ea5a4", fontWeight: 600 }}>
           Lakukan pembayaran
         </span>{" "}
-        setelah invoice dikirimkan dan kirim bukti pembayaran kepada tim
-        Sayvia.
+        setelah invoice dikirimkan dan <span style={{ color: "#0ea5a4", fontWeight: 600 }}>
+          kirim bukti pembayaran
+        </span>{" "} kepada tim Sayvia.
       </>
     ),
-    icon: <PaymentsIcon fontSize="small" />,
+    icon: "assets/icons/03.webp",
   },
   {
     title: "Proses, Siap, & Bagikan",
     desc: (
       <>
-        Tim Sayvia <b>langsung mengerjakan</b> undangan digitalmu sampai{" "}
+        Tim Sayvia <span style={{ color: "#0ea5a4", fontWeight: 600 }}>
+          langsung mengerjakan
+        </span>{" "} undangan digitalmu sampai{" "}
         <span style={{ color: "#0ea5a4", fontWeight: 600 }}>
           siap dibagikan
         </span>{" "}
         kepada tamu.
       </>
     ),
-    icon: <SendIcon fontSize="small" />,
+    icon: "assets/icons/04.webp",
   },
 ];
 
@@ -70,18 +76,15 @@ export default function OrderFlow() {
       {/* TITLE */}
       <Box maxWidth={1100} mx="auto" mb={8}>
         <Typography fontSize={20} fontWeight={700} mb={1}>
-          Cuma{" "}
-          <span style={{ color: "#F97316" }}>4 langkah</span>, undangan digital{" "}
-          <span style={{ color: "#F97316" }}>langsung jadi!</span>
+          Cuma <span style={{ color: "#F97316" }}>4 langkah</span>, undangan
+          digital <span style={{ color: "#F97316" }}>langsung jadi</span>
+          <span> !</span>
         </Typography>
 
         <Typography fontSize={18} fontWeight={600}>
           Segampang itu —{" "}
-          <span style={{ color: "#0ea5a4" }}>
-            yuk mulai pesan
-          </span>{" "}
-          undangan digital kamu{" "}
-          <span style={{ color: "#0ea5a4" }}>sekarang!</span>
+          <span style={{ color: "#14B8A6" }}>yuk mulai pesan</span> undangan
+          digital kamu <span style={{ color: "#14B8A6" }}>sekarang!</span>
         </Typography>
       </Box>
 
@@ -144,25 +147,23 @@ export default function OrderFlow() {
               </Typography>
 
               {/* ICON */}
-              <Box
-                sx={{
-                  width: 36,
-                  height: 36,
-                  borderRadius: "50%",
-                  background: "#0ea5a4",
-                  color: "#fff",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  mb: 2,
+              <img
+                src={step.icon}
+                alt={`step-${index + 1}`}
+                style={{
+                  width: 40,
+                  marginBottom: 16,
                   position: "relative",
                   zIndex: 1,
                 }}
-              >
-                {step.icon}
-              </Box>
+              />
 
-              <Typography fontWeight={700} mb={1} position="relative" zIndex={1}>
+              <Typography
+                fontWeight={700}
+                mb={1}
+                position="relative"
+                zIndex={1}
+              >
                 {step.title}
               </Typography>
 
