@@ -1,5 +1,6 @@
 import { Grid, Box, Typography } from "@mui/material";
 import { useSayviaTheme } from "../theme/SayviaThemeProvider";
+import { size, weight } from "../theme/sayviaTheme";
 
 const values = [
   {
@@ -50,28 +51,48 @@ const ValuesSection = () => {
   return (
     <Box
       sx={{
+        position: "relative",
         py: { xs: 6, md: 10 },
         px: { xs: 2, md: 6 },
-        background: `linear-gradient(180deg, ${colors.backgroundLight} 30%, ${colors.white} 40%)`,
+        background: colors.backgroundLight,
+        overflow: "hidden",
       }}
     >
+        <Box
+          sx={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "25%",
+            backgroundColor: colors.backgroundPastel,
+            zIndex: 0,
+          }}
+       ></Box>
+
       {/* Container */}
       <Box
         sx={{
-          maxWidth: "1540px",
+          position: "relative",
+          zIndex: 1,
+          maxWidth: "85%",
           mx: "auto",
           background: colors.white,
-          borderRadius: 5,
-          p: { xs: 3, md: 6 },
+          borderRadius: 7,
+          p: { xs: 3, md: 0 },
+          pb: { xs: 3, md: 8.5},
           boxShadow: "15px 25px 60px rgba(0,0,0,0.2)",
         }}
       >
         {/* Title */}
         <Typography
           sx={{
-            fontSize: { xs: "1.42rem", md: "2.33rem" },
-            fontWeight: 900,
-            mb: 6,
+            fontSize: { xs: "1.42rem", md: size.h1 },
+            fontWeight: weight.semiBold,
+            pt: 8.5,
+            pl: 8.5,
+            mt: 0,
+            mb: 7,
             textAlign: "left",
           }}
         >
@@ -86,29 +107,32 @@ const ValuesSection = () => {
         </Typography>
 
         {/* Values Grid */}
-        <Grid container spacing={3}>
+        <Grid 
+          container 
+          spacing={3}
+          columns={12}
+          justifyContent={"center"}>
           {values.map((item, i) => (
-            <Grid item xs={10} sm={4} md={2} key={i}>
+            <Grid item xs={12} sm={6} md={3} key={i}>
               <Box
                 sx={{
-                  p: 3,
+                  p: 4,
                   borderRadius: 4,
                   height: "100%",
-                  maxWidth: 300,
-                  // transition: "all .3s ease",
-                  // "&:hover": {
-                  //   transform: "translateY(-6px)",
-                  //   boxShadow: "0 15px 40px rgba(249,115,22,0.15)",
-                  // },
+                  //width: "100%",
+                  maxWidth: 310,
                 }}
               >
                 {/* Icon */}
-                <Box mb={2}>
+                <Box mb={1.5}>
                   <img
                     src={item.icon}
-                    width={50}
-                    height={50}
-                    style={{ objectFit: "contain" }}
+                    width={64}
+                    height={64}
+                    style={{ 
+                      objectFit: "cover",
+                      display: "block",
+                     }}
                     alt={item.title}
                   />
                 </Box>
@@ -116,10 +140,10 @@ const ValuesSection = () => {
                 {/* Title */}
                 <Typography
                   sx={{
-                    fontWeight: 800,
-                    fontSize: 16,
+                    fontSize: size.h2,
+                    fontWeight: weight.semiBold,
                     color: colors.primary,
-                    mb: 1,
+                    mb: 1.5,
                   }}
                 >
                   {item.title}
@@ -128,9 +152,10 @@ const ValuesSection = () => {
                 {/* Description */}
                 <Typography
                   sx={{
-                    fontSize: 14,
-                    color: colors.textSecondary,
-                    lineHeight: 1.6,
+                    fontSize: size.h3,
+                    fontWeight: weight.regular,
+                    color: colors.black,
+                    lineHeight: 1.5,
                   }}
                 >
                   {item.desc}

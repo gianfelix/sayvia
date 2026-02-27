@@ -9,11 +9,13 @@ import {
   Collapse,
   Divider,
 } from "@mui/material";
+import sayviaTheme, { size, weight } from "../theme/sayviaTheme";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 const colors = {
-  orange: "#F97316",
-  green: "#14B8A6",
-  darkGreen: "#0F766E",
+  orange: "#eb862c",
+  green: "#068f7f",
+  darkGreen: "#056156",
 };
 
 const packages = [
@@ -25,7 +27,7 @@ const packages = [
     price: 53000,
     standard: [
       <>
-        Masa aktif sampai <b>max. 14 hari</b>
+        Masa aktif sampai <b>max. 14 hari</b> setelah acara
       </>,
       <>
         Desain{" "}
@@ -37,12 +39,11 @@ const packages = [
         <b>FREE max. 1x</b> revisi
       </>,
       <>
-        <b>
-          FREE <i>reschedule</i>
-        </b>{" "}
+        <b>FREE</b> <i>reschedule</i>
+        {" "}
         (selama kuota revisi masih ada)
       </>,
-      <>Penyesuaian teks Bahasa</>,
+      <>Penyesuaian teks/bahasa</>,
     ],
     special: [
       {
@@ -97,13 +98,14 @@ const packages = [
   },
   {
     name: "Glow-Up",
-    desc: "Makin estetik dan interaktif. Fitur lebih lengkap dan tampilan makin standout!",
+    desc: (
+      <>Makin estetik dan interaktif. Fitur lebih lengkap dan tampilan makin <i>standout!</i></>),
     discount: "42%",
     original: 154000,
     price: 89000,
     standard: [
       <>
-        Masa aktif sampai <b>max. 14 hari</b>
+        Masa aktif sampai <b>max. 14 hari</b> setelah acara
       </>,
       <>
         Desain{" "}
@@ -115,12 +117,11 @@ const packages = [
         <b>FREE max. 3x</b> revisi
       </>,
       <>
-        <b>
-          FREE <i>reschedule</i>
-        </b>{" "}
+        <b>FREE</b> <i>reschedule</i>
+        {" "}
         (selama kuota revisi masih ada)
       </>,
-      <>Penyesuaian teks Bahasa</>,
+      <>Penyesuaian teks/bahasa</>,
     ],
     special: [
       {
@@ -162,7 +163,7 @@ const packages = [
             Video <b>max. 1</b>
           </>
         ),
-        yes: false,
+        yes: true,
       },
       {
         text: (
@@ -170,18 +171,18 @@ const packages = [
             Hitung Mundur (<i>Countdown Timer</i>)
           </>
         ),
-        yes: false,
+        yes: true,
       },
-      { text: <>Konfirmasi Kehadiran (RSVP)</>, yes: false },
-      { text: <>Angpao Digital</>, yes: false },
-      { text: <>Tambah ke Pengingat/Kalender</>, yes: false },
+      { text: <>Konfirmasi Kehadiran (RSVP)</>, yes: true },
+      { text: <>Angpao Digital</>, yes: true },
+      { text: <>Tambah ke Pengingat/Kalender</>, yes: true },
       {
         text: (
           <>
             <b>FREE max. 100</b> Nama Tamu
           </>
         ),
-        yes: false,
+        yes: true,
       },
       {
         text: (
@@ -189,7 +190,7 @@ const packages = [
             <b>FREE</b> URL Khusus
           </>
         ),
-        yes: false,
+        yes: true,
       },
       {
         text: (
@@ -197,19 +198,20 @@ const packages = [
             Galeri Foto (opsional) <b>max. 5</b>
           </>
         ),
-        yes: false,
+        yes: true,
       },
     ],
   },
   {
     name: "All Out!",
-    desc: "Totalitas tanpa batas!! Lebih eksklusif dan variative untuk full experience yang memukau.",
+    desc: (
+      <>Totalitas tanpa batas!! Lebih eksklusif dan variatif untuk <i>full experience</i> yang memukau.</>),
     discount: "34%",
     original: 232000,
     price: 153000,
     standard: [
       <>
-        Masa aktif sampai <b>max. 14 hari</b>
+        Masa aktif sampai <b>max. 14 hari</b> setelah acara
       </>,
       <>
         Desain{" "}
@@ -221,12 +223,11 @@ const packages = [
         <b>FREE max. 5x</b> revisi
       </>,
       <>
-        <b>
-          FREE <i>reschedule</i>
-        </b>{" "}
+        <b>FREE</b> <i>reschedule</i>
+        {" "}
         (selama kuota revisi masih ada)
       </>,
-      <>Penyesuaian teks Bahasa</>,
+      <>Penyesuaian teks/bahasa</>,
     ],
     special: [
       {
@@ -268,7 +269,7 @@ const packages = [
             Video <b>max. 1</b>
           </>
         ),
-        yes: false,
+        yes: true,
       },
       {
         text: (
@@ -276,18 +277,18 @@ const packages = [
             Hitung Mundur (<i>Countdown Timer</i>)
           </>
         ),
-        yes: false,
+        yes: true,
       },
-      { text: <>Konfirmasi Kehadiran (RSVP)</>, yes: false },
-      { text: <>Angpao Digital</>, yes: false },
-      { text: <>Tambah ke Pengingat/Kalender</>, yes: false },
+      { text: <>Konfirmasi Kehadiran (RSVP)</>, yes: true },
+      { text: <>Angpao Digital</>, yes: true },
+      { text: <>Tambah ke Pengingat/Kalender</>, yes: true },
       {
         text: (
           <>
             <b>FREE max. 100</b> Nama Tamu
           </>
         ),
-        yes: false,
+        yes: true,
       },
       {
         text: (
@@ -295,7 +296,7 @@ const packages = [
             <b>FREE</b> URL Khusus
           </>
         ),
-        yes: false,
+        yes: true,
       },
       {
         text: (
@@ -303,17 +304,51 @@ const packages = [
             Galeri Foto (opsional) <b>max. 5</b>
           </>
         ),
-        yes: false,
+        yes: true,
       },
     ],
   },
 ];
 
 export default function PackagesSection() {
-  const [expanded, setExpanded] = useState(null);
+  const [expanded, setExpanded] = useState({});
 
   return (
-    <Box sx={{ py: 10, px: 3, background: "#ffffff" }}>
+    <Box 
+      sx={{ 
+        py: 10, 
+        px: 3, 
+        background: sayviaTheme.colors.backgroundLight }}>
+    
+    {/* TITLE */}
+      <Typography
+        textAlign="center"
+        sx={{
+          fontSize: size.h0,
+          fontWeight: weight.bold,
+          color: sayviaTheme.colors.secondary,
+          mt: 1,
+        }}
+      >
+        Pilih Paket Terbaik untuk Hari Spesialmu!
+      </Typography>
+
+      <Typography 
+      textAlign="center" 
+      fontSize={size.h2} 
+      fontWeight={weight.regular}
+      mt={1.5}>
+        Sayvia siap bantu bikin undangan digital kamu makin kece tanpa bikin dompet kaget
+      </Typography>
+
+      <Typography 
+      textAlign="center" 
+      fontSize={size.h2} 
+      fontWeight={weight.regular}
+      mb={12}>
+        Pilih paket yang paling cocok untuk hari spesialmu!
+      </Typography>
+
       <Box
         sx={{
           display: "grid",
@@ -321,6 +356,7 @@ export default function PackagesSection() {
           gap: 4,
           maxWidth: 1100,
           mx: "auto",
+          alignItems: "start"
         }}
       >
         {packages.map((pkg, index) => {
@@ -331,10 +367,11 @@ export default function PackagesSection() {
               key={index}
               sx={{
                 borderRadius: 6,
-                p: 3,
+                p: 2,
                 textAlign: "center",
                 background: isHighlight
-                  ? `linear-gradient(180deg, #14B8A6 0%, rgba(255, 255, 255) 90%)`
+                  ? `linear-gradient(180deg, #2ac1b0 0px, #2ac1b0 400px, rgba(42,193,176,0.6) 450px, rgba(42,193,176,0.2) 500px, transparent 550px) top / 100% 550px no-repeat,
+                   #ffffff`
                   : "#fff",
                 color: "#000",
 
@@ -346,12 +383,13 @@ export default function PackagesSection() {
               <CardContent>
                 {/* Title */}
                 <Typography
-                  fontSize={35}
-                  fontWeight={900}
-                  mb={2}
+                  fontSize={size.h1}
+                  fontWeight={weight.bold}
+                  mt={2}
+                  mb={4}
                   sx={{
                     textAlign: "center",
-                    color: isHighlight ? "#fff" : "#14B8A6",
+                    color: isHighlight ? "#ffffff" : sayviaTheme.colors.secondary,
                   }}
                 >
                   {pkg.name}
@@ -359,12 +397,13 @@ export default function PackagesSection() {
 
                 {/* Description */}
                 <Typography
-                  fontSize={14}
-                  mb={4}
+                  fontSize={size.h3}
+                  fontWeight={weight.semiBold}
                   sx={{
                     textAlign: "left",
-                    color: isHighlight ? "rgba(255, 255, 255)" : "#000",
-                    marginBottom: isHighlight ? 3 : "auto",
+                    color: isHighlight ? "#ffffff" : sayviaTheme.colors.black,
+                    mb: 4,
+                    minHeight: 72,
                   }}
                 >
                   {pkg.desc}
@@ -380,42 +419,55 @@ export default function PackagesSection() {
                 >
                   {/* Discount */}
                   <Typography
-                    fontSize={13}
+                    fontSize={size.h3}
+                    fontWeight={weight.semiBold}
                     sx={{
                       color: colors.orange,
-                      background: "rgba(255, 255, 255)",
-                      textAlign: "left",
-                      display: "inline-block",
-                      px: 1,
-                      py: 0.3,
-                      borderRadius: 2,
-                      fontWeight: 600,
+                      background: isHighlight ? "#ffffff" : "#f7f7f7",
+                      display: "inline-flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      lineHeight: 1,
+                      px: "12px",
+                      py: "8px",
+                      borderRadius: 1,
                     }}
                   >
                     Diskon {pkg.discount}{" "}
                   </Typography>
-                  <span
-                    style={{
-                      textDecoration: "line-through",
-                      opacity: 0.7,
-                      fontSize: 13,
-                      marginLeft: 8,
-                      color: isHighlight ? "rgba(255, 255, 255)" : "#8e8e8f",
+                  <Box
+                    component="span"
+                    sx={{
+                      position: "relative",
+                      fontSize: size.h3,
+                      marginLeft: 2,
+                      color: isHighlight ? "#ffffff" : sayviaTheme.colors.textMuted,
+                      display: "inline-block",
+
+                      "&::after":{
+                        content:'""',
+                        position: "absolute",
+                        left: -2.5,
+                        right: -2.5,
+                        top: "50%",
+                        height: "1.9px",
+                        backgroundColor: isHighlight ? "#ffffff" : sayviaTheme.colors.textMuted,
+                      },
                     }}
                   >
                     Rp{pkg.original.toLocaleString("id-ID")}
-                  </span>
+                  </Box>
                 </Box>
 
                 {/* Price */}
                 <Typography
-                  fontSize={36}
-                  fontWeight={900}
-                  mb={3}
-                  mt={1}
+                  fontSize={size.h1}
+                  fontWeight={weight.bold}
+                  mb={4}
+                  mt={0}
                   sx={{
                     textAlign: "left",
-                    color: isHighlight ? "#fff" : "#14B8A6",
+                    color: isHighlight ? "#ffff" : "#07a693",
                   }}
                 >
                   Rp{pkg.price.toLocaleString("id-ID")}
@@ -425,15 +477,20 @@ export default function PackagesSection() {
                 <Button
                   fullWidth
                   sx={{
-                    mb: 4,
-                    bgcolor: isHighlight ? colors.orange : colors.green,
+                    mb: 6,
+                    bgcolor: isHighlight ? sayviaTheme.colors.primary : colors.green,
                     color: "#fff",
-                    borderRadius: 999,
-                    fontWeight: 700,
-                    fontSize: 18,
-                    py: 1.2,
+                    borderRadius: 3,
+                    fontSize: size.h2,
+                    fontWeight: weight.semiBold,
+                    textTransform: "none",
+                    transition: "transform 0.3s ease, background-color 0.3s ease",
+                    willChange: "transform",
+                    //py: 1.2,
+
                     "&:hover": {
-                      bgcolor: isHighlight ? "#ea580c" : colors.darkGreen,
+                      bgcolor: isHighlight ? sayviaTheme.colors.buttonHover : colors.darkGreen,
+                      transform: "translateY(-2px)",
                     },
                   }}
                 >
@@ -442,19 +499,34 @@ export default function PackagesSection() {
 
                 {/* FITUR STANDAR */}
                 <Typography
-                  fontWeight={800}
-                  fontSize={13}
+                  fontWeight={weight.semiBold}
+                  fontSize={size.h3}
                   mb={2}
                   textAlign="left"
                 >
                   FITUR STANDAR
                 </Typography>
 
-                <Stack spacing={1.2} mb={2}>
+                <Stack spacing={1.5} mb={6}>
                   {pkg.standard.map((item, i) => (
                     <Box key={i} display="flex" alignItems="flex-start" gap={1}>
-                      <img src="assets/icons/Yes.webp" width={16} alt="yes" />
-                      <Typography fontSize={13} textAlign="left">
+                      <Box
+                        component="img"
+                        src="assets/icons/Yes.webp"
+                        alt="yes"
+                        sx={{
+                          width: 16,
+                          height: 15.5,
+                          mt: "2.5px",
+                        }} 
+                        />
+                      <Typography 
+                        fontSize={size.h3} 
+                        fontWeight={weight.regular}
+                        textAlign="left"
+                        sx={{
+                          lineHeight: 1.5,
+                        }}>
                         {item}
                       </Typography>
                     </Box>
@@ -462,17 +534,17 @@ export default function PackagesSection() {
                 </Stack>
 
                 {/* FITUR KHUSUS */}
-                <Collapse in={expanded === index}>
+                <Collapse in={expanded[index] || false}>
                   <Typography
-                    fontWeight={800}
-                    fontSize={13}
+                    fontWeight={weight.semiBold}
+                    fontSize={size.h3}
                     mb={2}
                     textAlign="left"
                   >
                     FITUR KHUSUS
                   </Typography>
 
-                  <Stack spacing={1.2} mb={2}>
+                  <Stack spacing={1.5} mb={6}>
                     {pkg.special.map((item, i) => (
                       <Box
                         key={i}
@@ -480,16 +552,30 @@ export default function PackagesSection() {
                         alignItems="flex-start"
                         gap={1}
                       >
-                        <img
+                        <Box
+                          component="img"
                           src={
                             item.yes
                               ? "assets/icons/Yes.webp"
                               : "assets/icons/No.webp"
                           }
-                          width={16}
                           alt="icon"
+                          sx={{
+                            width: 16,
+                            height: 15.5,
+                            mt: "2.5px",
+                          }}
                         />
-                        <Typography fontSize={13} textAlign="left">
+                        <Typography 
+                          fontSize={size.h3} 
+                          fontWeight={weight.regular} 
+                          textAlign="left"
+                          sx={{
+                            lineHeight: 1.5,
+                            color: item.yes
+                              ? (isHighlight ? sayviaTheme.colors.black : sayviaTheme.colors.black)
+                              : (isHighlight ? sayviaTheme.colors.black : sayviaTheme.colors.textMuted)
+                          }}>
                           {item.text}
                         </Typography>
                       </Box>
@@ -498,18 +584,42 @@ export default function PackagesSection() {
                 </Collapse>
                 {/* Toggle */}
                 <Typography
-                  onClick={() => setExpanded(expanded === index ? null : index)}
+                  onClick={() => 
+                    setExpanded((prev) => ({
+                      ...prev,
+                      [index]: !prev[index],
+                    }))
+                  }
                   sx={{
-                    fontSize: 13,
-                    fontWeight: 700,
-                    color: "#9c9c9c",
+                    fontSize: size.h3,
+                    fontWeight: weight.semiBold,
+                    color: "#b3b3b3",
                     cursor: "pointer",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: 0.5,
+                    userSelect: "none",
                     mb: 0,
+
+                    "&:hover":{
+                      transform: "translateY(-2px)",
+                      transition: "transform 0.3s ease",
+                    }
                   }}
                 >
-                  {expanded === index
-                    ? "Lihat Lebih Sedikit ▲"
-                    : "Lihat Lebih Banyak ▼"}
+                  Lihat {expanded[index] ? "Lebih Sedikit" : "Selengkapnya"}
+
+                  <ExpandMoreIcon
+                    sx={{
+                      fontSize: 30,
+                      transition: "transform 0.3s ease",
+                      transform: expanded[index]
+                        ? "rotate(180deg)"
+                        : "rotate(0deg)",
+                    }}
+                  />
+                  
                 </Typography>
               </CardContent>
             </Card>

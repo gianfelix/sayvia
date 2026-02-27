@@ -4,6 +4,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import PaymentsIcon from "@mui/icons-material/Payments";
 import SendIcon from "@mui/icons-material/Send";
 import { Image } from "@mui/icons-material";
+import { colors, size, weight } from "../theme/sayviaTheme";
 
 const steps = [
   {
@@ -11,9 +12,9 @@ const steps = [
     desc: (
       <>
         Hubungi tim Sayvia melalui{" "}
-        <span style={{ color: "#0ea5a4", fontWeight: 600 }}>WhatsApp</span> atau
+        <span style={{ color: "#068f7f", fontWeight: weight.bold, fontStyle: "italic" }}>WhatsApp</span> atau
         klik tombol{" "}
-        <span style={{ color: "#0ea5a4", fontWeight: 600 }}>
+        <span style={{ color: "#068f7f", fontWeight: 600 }}>
           Pesan Sekarang
         </span>{" "}
         untuk memesan undangan digital.
@@ -25,9 +26,9 @@ const steps = [
     title: "Isi Data, Pilih Paket, & Tentukan Desain",
     desc: (
       <>
-        <span style={{ color: "#0ea5a4" }}>Isi formulir</span> yang disediakan, lalu{" "}
-        <span style={{ color: "#0ea5a4" }}>pilih paket</span> yang diinginkan,
-        dan <span style={{ color: "#0ea5a4" }}>pilih desain</span> yang kamu
+        <span style={{ color: "#068f7f" }}><b>Isi formulir</b></span> yang disediakan, lalu{" "}
+        <span style={{ color: "#068f7f" }}><b>pilih paket</b></span> yang diinginkan,
+        dan <span style={{ color: "#068f7f" }}><b>pilih desain</b></span> yang kamu
         sukai.
       </>
     ),
@@ -37,10 +38,10 @@ const steps = [
     title: "Bayar & Konfirmasi",
     desc: (
       <>
-        <span style={{ color: "#0ea5a4", fontWeight: 600 }}>
+        <span style={{ color: "#068f7f", fontWeight: weight.bold }}>
           Lakukan pembayaran
         </span>{" "}
-        setelah invoice dikirimkan dan <span style={{ color: "#0ea5a4", fontWeight: 600 }}>
+        setelah <i>invoice</i> dikirimkan dan <span style={{ color: "#068f7f", fontWeight: weight.bold }}>
           kirim bukti pembayaran
         </span>{" "} kepada tim Sayvia.
       </>
@@ -51,10 +52,10 @@ const steps = [
     title: "Proses, Siap, & Bagikan",
     desc: (
       <>
-        Tim Sayvia <span style={{ color: "#0ea5a4", fontWeight: 600 }}>
+        Tim Sayvia <span style={{ color: "#068f7f", fontWeight: 600 }}>
           langsung mengerjakan
         </span>{" "} undangan digitalmu sampai{" "}
-        <span style={{ color: "#0ea5a4", fontWeight: 600 }}>
+        <span style={{ color: "#068f7f", fontWeight: 600 }}>
           siap dibagikan
         </span>{" "}
         kepada tamu.
@@ -70,76 +71,79 @@ export default function OrderFlow() {
       sx={{
         py: { xs: 8, md: 12 },
         px: { xs: 3, md: 10 },
-        background: "#ffffff",
+        background: colors.backgroundLight,
       }}
     >
-      {/* TITLE */}
-      <Box maxWidth={1100} mx="auto" mb={8}>
-        <Typography fontSize={20} fontWeight={700} mb={1}>
-          Cuma <span style={{ color: "#F97316" }}>4 langkah</span>, undangan
-          digital <span style={{ color: "#F97316" }}>langsung jadi</span>
-          <span> !</span>
-        </Typography>
 
-        <Typography fontSize={18} fontWeight={600}>
-          Segampang itu —{" "}
-          <span style={{ color: "#14B8A6" }}>yuk mulai pesan</span> undangan
-          digital kamu <span style={{ color: "#14B8A6" }}>sekarang!</span>
-        </Typography>
-      </Box>
-
-      {/* CONTENT */}
+      {/* GRID 2 UTAMA */}
       <Box
         sx={{
           display: "grid",
-          gridTemplateColumns: { xs: "1fr", md: "1fr 1.1fr" },
-          gap: 6,
-          maxWidth: 1100,
-          mx: "auto",
-          alignItems: "center",
+          gridTemplateColumns: { xs: "1fr", md: "1.1fr 1fr" },
+          gap: 4,
+          maxWidth: "95%",
+          alignItems: "start",
         }}
       >
-        {/* MOCKUP IMAGE */}
-        <Box
-          sx={{
-            width: "100%",
-            height: 500,
-            borderRadius: 6,
-            background: "#d1d5db",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            color: "#555",
-            fontSize: 20,
-          }}
-        >
-          Mockup Image
+        {/* KOLOM KIRI */}
+          {/* TITLE */}
+        <Box maxWidth={1100} ml={9} mt={0}>
+          <Typography fontSize={size.h1} fontWeight={weight.bold} mb={1}>
+            Cuma <span style={{ color: colors.primary }}>4 langkah</span>, undangan
+            digital <span style={{ color: colors.primary }}>langsung jadi</span>
+            <span>!</span>
+            <br />
+            Segampang itu —{" "}
+            <span style={{ color: colors.secondary }}>yuk mulai pesan</span> undangan
+            <br />
+            digital kamu <span style={{ color: colors.secondary }}>sekarang</span>
+            <span>!</span>
+          </Typography>
+
+          {/* MOCKUP IMAGE */}
+          <Box
+            sx={{
+              width: 600,
+              height: 700,
+              borderRadius: 6,
+              background: "#d1d5db",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              color: "#555",
+              fontSize: 20,
+              mt: 7,
+              mx: "auto",
+            }}
+          >
+            Mockup Image
+          </Box>
         </Box>
 
-        {/* STEPS */}
+        {/* KOLOM KANAN */}
+          {/* STEPS */}
         <Box>
           {steps.map((step, index) => (
             <Box
               key={index}
               sx={{
                 position: "relative",
-                background: "#fff",
-                borderRadius: 4,
-                p: 4,
+                background: colors.white,
+                borderRadius: 5,
+                p: 2.5,
                 mb: 3,
-                boxShadow: "0 10px 25px rgba(0,0,0,0.05)",
-                border: "1px solid #e5e7eb",
+                ml: 3,
               }}
             >
               {/* BIG NUMBER */}
               <Typography
                 sx={{
                   position: "absolute",
+                  top: 2.5,
                   right: 20,
-                  top: 10,
-                  fontSize: 80,
-                  fontWeight: 800,
-                  color: "#e5e7eb",
+                  fontSize: size.h0,
+                  fontWeight: weight.bold,
+                  color: "#e5e5e5",
                   zIndex: 0,
                 }}
               >
@@ -152,15 +156,16 @@ export default function OrderFlow() {
                 alt={`step-${index + 1}`}
                 style={{
                   width: 40,
-                  marginBottom: 16,
+                  marginBottom: 5,
                   position: "relative",
                   zIndex: 1,
                 }}
               />
 
               <Typography
-                fontWeight={700}
-                mb={1}
+                fontWeight={weight.bold}
+                fontSize={size.h2}
+                mb={2.5}
                 position="relative"
                 zIndex={1}
               >
@@ -168,8 +173,8 @@ export default function OrderFlow() {
               </Typography>
 
               <Typography
-                fontSize={14}
-                color="text.secondary"
+                fontSize={size.h3}
+                fontWeight={weight.regular}
                 position="relative"
                 zIndex={1}
               >

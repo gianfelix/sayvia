@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   AppBar,
   Toolbar,
@@ -11,6 +11,8 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useSayviaTheme } from "../theme/SayviaThemeProvider";
+import { hover } from "@testing-library/user-event/dist/hover";
+import sayviaTheme, { size, weight } from "../theme/sayviaTheme";
 
 const menuItems = ["Harga", "Desain", "FAQ"];
 
@@ -18,29 +20,52 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
   const { colors } = useSayviaTheme();
 
+const [scrolled, setScrolled] = useState(false);
+
+useEffect(() => {
+  const handleScroll = () => {
+    setScrolled(window.scrollY > 1000);
+  };
+
+  window.addEventListener("scroll", handleScroll);
+  return () => window.removeEventListener("scroll", handleScroll);
+}, []);
+  
   return (
     <>
       <AppBar
         position="sticky"
         elevation={0}
         sx={{
-          backgroundColor: colors.backgroundLight,
-          // backdropFilter: "blur(8px)",
-          // borderBottom: `2px solid ${colors.primary}20`,
+          backgroundColor: colors.backgroundPastel,
+          backdropFilter: scrolled ? "blur(8px)" : "none",
+          boxShadow: scrolled
+            ? "0 4px 20px rgba(0,0,0,0.08)"
+            : "none",
+          transition: "all 0.3s ease",
         }}
       >
         <Toolbar
           sx={{
             justifyContent: "space-between",
-            width: "85%",
+            width: "90%",
             mx: "auto",
           }}
         >
           {/* LOGO */}
           <Box sx={{ display: "flex", alignItems: "center" }}>
-            <IconButton href="/" _hover={{ backgroundColor: "transparent" }}>
+            <IconButton 
+              href="/"
+              disableRipple
+              sx={{
+                p: 0,
+                backgroundColor: "transparent",
+                "&hover": {
+                  backgroundColor: "transparent",
+                },
+              }} >
               <img
-                src="/assets/icons/logo_say_hor.png"
+                src="/assets/icons/logo_say_hor.webp"
                 alt="Sayvia"
                 style={{ height: 36 }}
               />
@@ -51,20 +76,54 @@ const Navbar = () => {
           <Box
             sx={{
               display: { xs: "none", md: "flex" },
-              gap: 3,
+              gap: "clamp(3px, 1.2vw, 21px)",
               alignItems: "center",
             }}
           >
             {menuItems.map((item) => (
               <Button
                 key={item}
+                component="button"
+                disableRipple
+                disableElevation
                 sx={{
+                  position: "relative",
+                  overflow: "hidden",
                   color: colors.primary,
-                  fontWeight: 600,
+                  fontSize: size.h3,
+                  fontWeight: weight.medium,
                   textTransform: "none",
-                  "&:hover": {
-                    backgroundColor: `${colors.primary}10`,
+
+                  "&, &:hover, &:focus, &:active": {
+                    textDecoration: "none !important",
                   },
+
+                  border: "none",
+                  boxShadow: "none",
+                  background: "transparent",
+
+                  transition: "color 0.3s ease, font-weight 0.3s ease",
+
+                  "&::before": {
+                    content:'""',
+                    position: "absolute",
+                    inset: 0,
+                    backgroundColor: colors.primary,
+                    transform: "scaleY(0)",
+                    transformOrigin: "bottom",
+                    transition: "transform 0.3s ease",
+                    zIndex: -1,
+                  },
+
+                  "&:hover::before": {
+                    transform: "scaleY(1)",
+                  },
+
+                  "&:hover": {
+                    color: colors.white,
+                    fontSize: size.h3,
+                    fontWeight: weight.semiBold,
+                  }
                 }}
               >
                 {item}
@@ -76,15 +135,19 @@ const Navbar = () => {
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             <Button
               sx={{
-                px: 3,
-                borderRadius: "10px",
+                px: 2,
+                borderRadius: "7px",
                 backgroundColor: colors.primary,
                 color: colors.white,
-                fontWeight: 700,
+                fontSize: size.h3,
+                fontWeight: weight.semiBold,
                 textTransform: "none",
-                // boxShadow: "0 6px 16px rgba(249,115,22,0.35)",
+                transition: "transform 0.3s ease, background-color 0.3s ease",
+                willChange: "transform",
+
                 "&:hover": {
-                  backgroundColor: "#EA580C",
+                  backgroundColor: colors.buttonHover,
+                  transform: "translateY(-2px)",
                 },
               }}
             >
