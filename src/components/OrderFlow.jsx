@@ -1,9 +1,4 @@
-import { Box, Icon, Typography } from "@mui/material";
-import WhatsAppIcon from "@mui/icons-material/WhatsApp";
-import EditIcon from "@mui/icons-material/Edit";
-import PaymentsIcon from "@mui/icons-material/Payments";
-import SendIcon from "@mui/icons-material/Send";
-import { Image } from "@mui/icons-material";
+import { Box, Typography } from "@mui/material";
 import { colors, size, weight } from "../theme/sayviaTheme";
 
 const steps = [
@@ -12,19 +7,11 @@ const steps = [
     desc: (
       <>
         Hubungi tim Sayvia melalui{" "}
-        <span
-          style={{
-            color: "#068f7f",
-            fontWeight: weight.bold,
-            fontStyle: "italic",
-          }}
-        >
+        <span style={{ color: "#068f7f", fontWeight: weight.bold, fontStyle: "italic" }}>
           WhatsApp
         </span>{" "}
         atau klik tombol{" "}
-        <span style={{ color: "#068f7f", fontWeight: 600 }}>
-          Pesan Sekarang
-        </span>{" "}
+        <span style={{ color: "#068f7f", fontWeight: 600 }}>Pesan Sekarang</span>{" "}
         untuk memesan undangan digital.
       </>
     ),
@@ -34,17 +21,11 @@ const steps = [
     title: "Isi Data, Pilih Paket, & Tentukan Desain",
     desc: (
       <>
-        <span style={{ color: "#068f7f" }}>
-          <b>Isi formulir</b>
-        </span>{" "}
+        <span style={{ color: "#068f7f" }}><b>Isi formulir</b></span>{" "}
         yang disediakan, lalu{" "}
-        <span style={{ color: "#068f7f" }}>
-          <b>pilih paket</b>
-        </span>{" "}
+        <span style={{ color: "#068f7f" }}><b>pilih paket</b></span>{" "}
         yang diinginkan, dan{" "}
-        <span style={{ color: "#068f7f" }}>
-          <b>pilih desain</b>
-        </span>{" "}
+        <span style={{ color: "#068f7f" }}><b>pilih desain</b></span>{" "}
         yang kamu sukai.
       </>
     ),
@@ -54,13 +35,9 @@ const steps = [
     title: "Bayar & Konfirmasi",
     desc: (
       <>
-        <span style={{ color: "#068f7f", fontWeight: weight.bold }}>
-          Lakukan pembayaran
-        </span>{" "}
+        <span style={{ color: "#068f7f", fontWeight: weight.bold }}>Lakukan pembayaran</span>{" "}
         setelah <i>invoice</i> dikirimkan dan{" "}
-        <span style={{ color: "#068f7f", fontWeight: weight.bold }}>
-          kirim bukti pembayaran
-        </span>{" "}
+        <span style={{ color: "#068f7f", fontWeight: weight.bold }}>kirim bukti pembayaran</span>{" "}
         kepada tim Sayvia.
       </>
     ),
@@ -71,13 +48,9 @@ const steps = [
     desc: (
       <>
         Tim Sayvia{" "}
-        <span style={{ color: "#068f7f", fontWeight: 600 }}>
-          langsung mengerjakan
-        </span>{" "}
+        <span style={{ color: "#068f7f", fontWeight: 600 }}>langsung mengerjakan</span>{" "}
         undangan digitalmu sampai{" "}
-        <span style={{ color: "#068f7f", fontWeight: 600 }}>
-          siap dibagikan
-        </span>{" "}
+        <span style={{ color: "#068f7f", fontWeight: 600 }}>siap dibagikan</span>{" "}
         kepada tamu.
       </>
     ),
@@ -91,35 +64,51 @@ export default function OrderFlow() {
       <Box
         sx={{
           py: { xs: 8, md: 12 },
-          px: { xs: 3, md: 10 },
+          px: { xs: 3, sm: 5, md: 8, lg: 10 },
           background: colors.backgroundLight,
         }}
       >
-        {/* GRID 2 UTAMA */}
         <Box
           sx={{
             display: "grid",
             gridTemplateColumns: { xs: "1fr", md: "1.1fr 1fr" },
-            gap: 4,
+            gap: { xs: 6, md: 4 },
             maxWidth: "95%",
+            mx: "auto",
             alignItems: "start",
           }}
         >
-          {/* KOLOM KIRI */}
-          {/* TITLE */}
-          <Box maxWidth={1100} ml={9} mt={0}>
-            <Typography fontSize={size.h1} fontWeight={weight.bold} mb={1}>
+          {/* ── KOLOM KIRI ── */}
+          <Box
+            sx={{
+              ml: { xs: 0, sm: 0, md: 4, lg: 9 },
+              mt: 0,
+              textAlign: { xs: "center", md: "left" },
+            }}
+          >
+            {/* TITLE */}
+            <Typography
+              sx={{
+                fontSize: { xs: "1.5rem", sm: "1.75rem", md: size.h1 },
+                fontWeight: weight.bold,
+                mb: 1,
+                lineHeight: 1.5,
+              }}
+            >
               Cuma <span style={{ color: colors.primary }}>4 langkah</span>,
               undangan digital{" "}
               <span style={{ color: colors.primary }}>langsung jadi</span>
               <span>!</span>
-              <br />
+              {/* hide manual <br> on mobile */}
+              <Box component="span" sx={{ display: { xs: "none", md: "inline" } }}>
+                <br />
+              </Box>{" "}
               Segampang itu —{" "}
-              <span style={{ color: colors.secondary }}>
-                yuk mulai pesan
-              </span>{" "}
+              <span style={{ color: colors.secondary }}>yuk mulai pesan</span>{" "}
               undangan
-              <br />
+              <Box component="span" sx={{ display: { xs: "none", md: "inline" } }}>
+                <br />
+              </Box>{" "}
               digital kamu{" "}
               <span style={{ color: colors.secondary }}>sekarang</span>
               <span>!</span>
@@ -128,16 +117,17 @@ export default function OrderFlow() {
             {/* MOCKUP IMAGE */}
             <Box
               sx={{
-                width: 700,
-                height: 450,
+                width: "100%",
+                maxWidth: { xs: "100%", sm: 500, md: 700 },
+                aspectRatio: "14 / 9",
                 borderRadius: 6,
                 background: "#d1d5db",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
                 color: "#555",
-                fontSize: 20,
-                mt: 7,
+                fontSize: { xs: 14, md: 20 },
+                mt: { xs: 4, md: 7 },
                 mx: "auto",
               }}
             >
@@ -145,8 +135,7 @@ export default function OrderFlow() {
             </Box>
           </Box>
 
-          {/* KOLOM KANAN */}
-          {/* STEPS */}
+          {/* ── KOLOM KANAN — STEPS ── */}
           <Box>
             {steps.map((step, index) => (
               <Box
@@ -155,53 +144,64 @@ export default function OrderFlow() {
                   position: "relative",
                   background: colors.white,
                   borderRadius: 5,
-                  p: 2.5,
+                  p: { xs: 2, sm: 2.5 },
                   mb: 3,
-                  ml: 3,
+                  ml: { xs: 0, md: 3 },
+                  overflow: "hidden",
                 }}
               >
-                {/* BIG NUMBER */}
+                {/* BIG NUMBER — background decoration */}
                 <Typography
                   sx={{
                     position: "absolute",
                     top: 2.5,
                     right: 20,
-                    fontSize: size.h0,
+                    fontSize: { xs: "3rem", md: size.h0 },
                     fontWeight: weight.bold,
                     color: "#e5e5e5",
                     zIndex: 0,
+                    lineHeight: 1,
+                    userSelect: "none",
                   }}
                 >
                   {index + 1}
                 </Typography>
 
                 {/* ICON */}
-                <img
+                <Box
+                  component="img"
                   src={step.icon}
                   alt={`step-${index + 1}`}
-                  style={{
-                    width: 40,
-                    marginBottom: 5,
+                  sx={{
+                    width: { xs: 32, md: 40 },
+                    mb: 0.5,
                     position: "relative",
                     zIndex: 1,
                   }}
                 />
 
                 <Typography
-                  fontWeight={weight.bold}
-                  fontSize={size.h2}
-                  mb={2.5}
-                  position="relative"
-                  zIndex={1}
+                  sx={{
+                    fontWeight: weight.bold,
+                    fontSize: { xs: "0.95rem", sm: size.h3, md: size.h2 },
+                    mb: 1.5,
+                    position: "relative",
+                    zIndex: 1,
+                    lineHeight: 1.4,
+                    pr: { xs: 4, md: 6 }, // prevent overlap with big number
+                  }}
                 >
                   {step.title}
                 </Typography>
 
                 <Typography
-                  fontSize={size.h3}
-                  fontWeight={weight.regular}
-                  position="relative"
-                  zIndex={1}
+                  sx={{
+                    fontSize: { xs: "0.85rem", sm: size.h3 },
+                    fontWeight: weight.regular,
+                    position: "relative",
+                    zIndex: 1,
+                    lineHeight: 1.7,
+                  }}
                 >
                   {step.desc}
                 </Typography>
