@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Accordion,
   AccordionSummary,
@@ -19,6 +20,11 @@ const rightColumn = faqs
   .filter((_, index) => index % 2 !== 0);
 
 export default function FAQSection() {
+  const [expanded, setExpanded] = useState(null);
+  const handleChange = (originalIndex) => (event, isExpanded) => {
+    setExpanded(isExpanded ? originalIndex : null);
+  };
+
   return (
     <section id="faq">
       <Box
@@ -68,7 +74,6 @@ export default function FAQSection() {
             display: "grid",
             gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
             gap: 3,
-            
           }}
         >
           {/* LEFT COLUMN */}
@@ -81,6 +86,8 @@ export default function FAQSection() {
               <Accordion
                 //defaultExpanded
                 key={index}
+                expanded={expanded === faq.originalIndex} // ← tambahkan ini
+                onChange={handleChange(faq.originalIndex)} // ← tambahkan ini
                 disableGutters
                 elevation={0}
                 square={true}
@@ -206,6 +213,8 @@ export default function FAQSection() {
               <Accordion
                 //defaultExpanded
                 key={index}
+                expanded={expanded === faq.originalIndex} // ← tambahkan ini
+                onChange={handleChange(faq.originalIndex)} // ← tambahkan ini
                 disableGutters
                 elevation={0}
                 square={true}
