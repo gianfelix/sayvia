@@ -54,11 +54,12 @@ const ValuesSection = () => {
         sx={{
           position: "relative",
           py: { xs: 6, md: 10 },
-          px: { xs: 1, md: 2 },
+          px: { xs: 2, sm: 3, md: 2 },
           background: colors.backgroundLight,
           overflow: "hidden",
         }}
       >
+        {/* Top accent band */}
         <Box
           sx={{
             position: "absolute",
@@ -69,32 +70,32 @@ const ValuesSection = () => {
             backgroundColor: colors.backgroundPastel,
             zIndex: 0,
           }}
-        ></Box>
+        />
 
-        {/* Container */}
+        {/* Card container */}
         <Box
           sx={{
             position: "relative",
             zIndex: 1,
-            maxWidth: "85%",
+            maxWidth: { xs: "100%", sm: "92%", md: "88%", lg: "85%" },
             mx: "auto",
             background: colors.white,
-            borderRadius: 7,
-            p: { xs: 3, md: 0 },
-            pb: { xs: 3, md: 8.5 },
+            borderRadius: { xs: 4, md: 7 },
+            p: { xs: 3, sm: 4, md: 0 },
+            pb: { xs: 4, sm: 5, md: 8.5 },
             boxShadow: "15px 25px 60px rgba(0,0,0,0.2)",
           }}
         >
           {/* Title */}
           <Typography
             sx={{
-              fontSize: { xs: "1.42rem", md: size.h1 },
+              fontSize: { xs: "1.25rem", sm: "1.42rem", md: size.h1 },
               fontWeight: weight.semiBold,
-              pt: 8.5,
-              pl: 8.5,
+              pt: { xs: 0, md: 8.5 },
+              pl: { xs: 0, md: 8.5 },
               mt: 0,
-              mb: 7,
-              textAlign: "left",
+              mb: { xs: 4, md: 7 },
+              textAlign: { xs: "center", md: "left" },
             }}
           >
             Kenapa harus pilih{" "}
@@ -108,39 +109,42 @@ const ValuesSection = () => {
           </Typography>
 
           {/* Values Grid */}
-          <Grid container spacing={3} columns={12} justifyContent={"center"}>
+          <Grid container spacing={{ xs: 1, sm: 2, md: 3 }} columns={12} justifyContent="center">
             {values.map((item, i) => (
-              <Grid item xs={12} sm={6} md={3} key={i}>
+              <Grid item xs={6} sm={6} md={3} key={i}>
                 <Box
                   sx={{
-                    p: 4,
-                    borderRadius: 4,
+                    p: { xs: 2, sm: 2.5, md: 4 },
+                    borderRadius: { xs: 3, md: 4 },
                     height: "100%",
-                    //width: "100%",
-                    maxWidth: 310,
+                    maxWidth: { xs: "100%", md: 310 },
+                    // subtle hover lift
+                    
                   }}
                 >
-                  {/* Icon */}
-                  <Box mb={1.5}>
-                    <img
+                  {/* Icon — scales with screen */}
+                  <Box mb={{ xs: 1, md: 1.5 }}>
+                    <Box
+                      component="img"
                       src={item.icon}
-                      width={64}
-                      height={64}
-                      style={{
+                      alt={item.title}
+                      sx={{
+                        width: { xs: 40, sm: 48, md: 56, lg: 64 },
+                        height: { xs: 40, sm: 48, md: 56, lg: 64 },
                         objectFit: "cover",
                         display: "block",
                       }}
-                      alt={item.title}
                     />
                   </Box>
 
                   {/* Title */}
                   <Typography
                     sx={{
-                      fontSize: size.h2,
+                      fontSize: { xs: "0.8rem", sm: "0.9rem", md: size.h2 },
                       fontWeight: weight.semiBold,
                       color: colors.primary,
-                      mb: 1.5,
+                      mb: { xs: 0.75, md: 1.5 },
+                      lineHeight: 1.3,
                     }}
                   >
                     {item.title}
@@ -149,10 +153,10 @@ const ValuesSection = () => {
                   {/* Description */}
                   <Typography
                     sx={{
-                      fontSize: size.h3,
+                      fontSize: { xs: "0.75rem", sm: "0.8rem", md: size.h3 },
                       fontWeight: weight.regular,
                       color: colors.black,
-                      lineHeight: 1.5,
+                      lineHeight: { xs: 1.4, md: 1.5 },
                     }}
                   >
                     {item.desc}

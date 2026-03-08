@@ -119,12 +119,12 @@ const HeroSection = () => {
               >
                 Cara baru kirim undangan,{" "}
                 <b>
-                  <i>no more boring invite!</i>
+                  <i>no more boring invite!{" "}</i>
                 </b>
                 <br />
-                Ekspresikan gayamu lewat undangan digital yang
+                Ekspresikan gayamu lewat undangan digital yang {" "}
                 <br />
-                <i>fresh, modern</i>, dan <i>anti-mainstream</i>.
+                <i>fresh, modern</i>, dan <i>anti-mainstream</i>. {" "}
                 <br />
                 Semua dalam satu tautan, tanpa ribet
               </Typography>

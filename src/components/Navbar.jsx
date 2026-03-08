@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import {
   AppBar,
   Toolbar,
-  Typography,
   Button,
   Box,
   IconButton,
@@ -10,11 +9,9 @@ import {
   Stack,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
 import { useSayviaTheme } from "../theme/SayviaThemeProvider";
-import { hover } from "@testing-library/user-event/dist/hover";
-import sayviaTheme, { size, weight } from "../theme/sayviaTheme";
-
-const menuItems = ["Harga", "Desain", "FAQ"];
+import { size, weight } from "../theme/sayviaTheme";
 
 const navItems = [
   { label: "Harga", id: "package", type: "scroll" },
@@ -25,29 +22,20 @@ const navItems = [
 const handleNavigation = (item) => {
   if (item.type === "scroll") {
     const element = document.getElementById(item.id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
+    if (element) element.scrollIntoView({ behavior: "smooth" });
   }
-
   if (item.type === "route") {
     window.location.href = item.path;
   }
-
-  // setOpen(true);
 };
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const { colors } = useSayviaTheme();
-
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 1000);
-    };
-
+    const handleScroll = () => setScrolled(window.scrollY > 1000);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -65,32 +53,24 @@ const Navbar = () => {
         }}
       >
         <Toolbar
-          sx={{
-            justifyContent: "space-between",
-            width: "90%",
-            mx: "auto",
-          }}
+          sx={{ justifyContent: "space-between", width: "90%", mx: "auto" }}
         >
           {/* LOGO */}
-          <Box sx={{ display: "flex", alignItems: "center" }}>
-            <IconButton
-              href="/"
-              disableRipple
-              sx={{
-                p: 0,
-                backgroundColor: "transparent",
-                "&hover": {
-                  backgroundColor: "transparent",
-                },
-              }}
-            >
-              <img
-                src="/assets/icons/logo_say_hor.webp"
-                alt="Sayvia"
-                style={{ height: 36 }}
-              />
-            </IconButton>
-          </Box>
+          <IconButton
+            href="/"
+            disableRipple
+            sx={{
+              p: 0,
+              backgroundColor: "transparent",
+              "&:hover": { backgroundColor: "transparent" },
+            }}
+          >
+            <img
+              src="/assets/icons/logo_say_hor.webp"
+              alt="Sayvia"
+              style={{ height: 36 }}
+            />
+          </IconButton>
 
           {/* MENU DESKTOP */}
           <Box
@@ -117,7 +97,6 @@ const Navbar = () => {
                   boxShadow: "none",
                   background: "transparent",
                   transition: "color 0.3s ease, font-weight 0.3s ease",
-
                   "&::before": {
                     content: '""',
                     position: "absolute",
@@ -128,11 +107,7 @@ const Navbar = () => {
                     transition: "transform 0.3s ease",
                     zIndex: -1,
                   },
-
-                  "&:hover::before": {
-                    transform: "scaleY(1)",
-                  },
-
+                  "&:hover::before": { transform: "scaleY(1)" },
                   "&:hover": {
                     color: colors.white,
                     fontWeight: weight.semiBold,
@@ -157,7 +132,6 @@ const Navbar = () => {
                 textTransform: "none",
                 transition: "transform 0.3s ease, background-color 0.3s ease",
                 willChange: "transform",
-
                 "&:hover": {
                   backgroundColor: colors.buttonHover,
                   transform: "translateY(-2px)",
@@ -168,7 +142,7 @@ const Navbar = () => {
             </Button>
           </Box>
 
-          {/* MOBILE ICON */}
+          {/* HAMBURGER ICON */}
           <IconButton
             sx={{ display: { xs: "flex", md: "none" }, color: colors.primary }}
             onClick={() => setOpen(true)}
@@ -178,59 +152,138 @@ const Navbar = () => {
         </Toolbar>
       </AppBar>
 
-      {/* MOBILE DRAWER */}
-      <Drawer anchor="right" open={open} onClose={() => setOpen(false)}>
-        <Box sx={{ width: 260, p: 3 }}>
-          <Typography
+      {/* ── MOBILE DRAWER ── */}
+      <Drawer
+        anchor="right"
+        open={open}
+        onClose={() => setOpen(false)}
+        // Remove default Paper background so our glass style shows
+        PaperProps={{
+          sx: {
+            // Glass morphism
+            background: "rgba(255, 255, 255, 0.05)",
+            backdropFilter: "blur(20px) saturate(180%)",
+            WebkitBackdropFilter: "blur(20px) saturate(180%)",
+            border: "1px solid rgba(255, 255, 255, 0.45)",
+            boxShadow: "-8px 0 32px rgba(0, 0, 0, 0.15)",
+            width: 220,
+          },
+        }}
+        // Semi-transparent dark backdrop
+        slotProps={{
+          backdrop: {
+            sx: {
+              backgroundColor: "rgba(0, 0, 0, 0.25)",
+              backdropFilter: "blur(4px)",
+              WebkitBackdropFilter: "blur(4px)",
+            },
+          },
+        }}
+      >
+        <Box
+          sx={{
+            width: 220,
+            p: 3,
+            height: "100%",
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          {/* TOP ROW — logo + close button */}
+          <Box
             sx={{
-              fontWeight: 800,
-              mb: 3,
-              color: colors.primary,
-              fontFamily: "'Poppins', sans-serif",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              mb: 4,
             }}
           >
-            SAYVIA
-          </Typography>
+            <IconButton
+              href="/"
+              disableRipple
+              sx={{
+                p: 0,
+                backgroundColor: "transparent",
+                "&:hover": { backgroundColor: "transparent" },
+              }}
+            >
+              <img
+                src="/assets/icons/logo_say_hor.webp"
+                alt="Sayvia"
+                style={{ height: 28 }}
+              />
+            </IconButton>
+            <IconButton
+              onClick={() => setOpen(false)}
+              size="small"
+              sx={{
+                color: colors.primary,
+                background: "rgba(255,255,255,0.3)",
+                border: "1px solid rgba(255,255,255,0.5)",
+                backdropFilter: "blur(8px)",
+                "&:hover": { background: "rgba(255,255,255,0.5)" },
+              }}
+            ></IconButton>
+          </Box>
 
-          <Stack spacing={2}>
-            {menuItems.map((item) => (
+          {/* NAV ITEMS */}
+          <Stack spacing={1} mb={4} sx={{ flex: 1 }}>
+            {navItems.map((item) => (
               <Button
-                key={item}
+                key={item.label}
                 fullWidth
-                onClick={() => setOpen(false)}
+                onClick={() => {
+                  handleNavigation(item);
+                  setOpen(false);
+                }}
                 sx={{
                   justifyContent: "flex-start",
                   color: colors.primary,
-                  fontWeight: 600,
+                  fontWeight: weight.semiBold,
+                  fontSize: size.h3,
                   textTransform: "none",
+                  borderRadius: "10px",
+                  px: 2,
+                  py: 1.2,
+                  // Glass card per item
+                  background: "rgba(255, 255, 255, 0.3)",
+                  border: "1px solid rgba(255, 255, 255, 0.5)",
+                  backdropFilter: "blur(8px)",
+                  transition: "background 0.2s ease, transform 0.2s ease",
                   "&:hover": {
-                    backgroundColor: `${colors.primary}10`,
+                    background: "rgba(255, 255, 255, 0.55)",
+                    transform: "translateX(4px)",
                   },
                 }}
               >
-                {item}
+                {item.label}
               </Button>
             ))}
-
-            <Button
-              fullWidth
-              onClick={() => setOpen(false)}
-              sx={{
-                mt: 2,
-                borderRadius: 14,
-                backgroundColor: colors.primary,
-                color: colors.white,
-                fontWeight: 700,
-                textTransform: "none",
-                boxShadow: "0 10px 25px rgba(249,115,22,0.35)",
-                "&:hover": {
-                  backgroundColor: "#EA580C",
-                },
-              }}
-            >
-              Pesan Sekarang!
-            </Button>
           </Stack>
+
+          {/* CTA BUTTON */}
+          <Button
+            onClick={() => setOpen(false)}
+            sx={{
+              width: "80%",
+              borderRadius: "10px",
+              backgroundColor: colors.primary,
+              color: colors.white,
+              fontSize: size.h3,
+              fontWeight: weight.semiBold,
+              textTransform: "none",
+              py: 1.3,
+              boxShadow: `0 4px 16px ${colors.primary}55`,
+              transition: "transform 0.3s ease, background-color 0.3s ease",
+              willChange: "transform",
+              "&:hover": {
+                backgroundColor: colors.buttonHover,
+                transform: "translateY(-2px)",
+              },
+            }}
+          >
+            Pesan Sekarang!
+          </Button>
         </Box>
       </Drawer>
     </>
