@@ -166,7 +166,7 @@ const Navbar = () => {
             WebkitBackdropFilter: "blur(20px) saturate(180%)",
             border: "1px solid rgba(255, 255, 255, 0.45)",
             boxShadow: "-8px 0 32px rgba(0, 0, 0, 0.15)",
-            width: 220,
+            width: 195,
           },
         }}
         // Semi-transparent dark backdrop
@@ -182,7 +182,7 @@ const Navbar = () => {
       >
         <Box
           sx={{
-            width: 220,
+            
             p: 3,
             height: "100%",
             display: "flex",
@@ -193,8 +193,9 @@ const Navbar = () => {
           <Box
             sx={{
               display: "flex",
-              alignItems: "center",
               justifyContent: "space-between",
+              alignItems: "center",
+              mx: "auto",
               mb: 4,
             }}
           >
@@ -213,21 +214,10 @@ const Navbar = () => {
                 style={{ height: 28 }}
               />
             </IconButton>
-            <IconButton
-              onClick={() => setOpen(false)}
-              size="small"
-              sx={{
-                color: colors.primary,
-                background: "rgba(255,255,255,0.3)",
-                border: "1px solid rgba(255,255,255,0.5)",
-                backdropFilter: "blur(8px)",
-                "&:hover": { background: "rgba(255,255,255,0.5)" },
-              }}
-            ></IconButton>
           </Box>
 
           {/* NAV ITEMS */}
-          <Stack spacing={1} mb={4} sx={{ flex: 1 }}>
+          <Stack spacing={1} mt={7} mb={4} sx={{ flex: 1 }}>
             {navItems.map((item) => (
               <Button
                 key={item.label}
@@ -246,12 +236,12 @@ const Navbar = () => {
                   px: 2,
                   py: 1.2,
                   // Glass card per item
-                  background: "rgba(255, 255, 255, 0.3)",
-                  border: "1px solid rgba(255, 255, 255, 0.5)",
+                  background: "rgba(255, 255, 255, 0.5)",
+                  
                   backdropFilter: "blur(8px)",
                   transition: "background 0.2s ease, transform 0.2s ease",
                   "&:hover": {
-                    background: "rgba(255, 255, 255, 0.55)",
+                    background: "rgba(255, 255, 255, 0.1)",
                     transform: "translateX(4px)",
                   },
                 }}
@@ -265,7 +255,8 @@ const Navbar = () => {
           <Button
             onClick={() => setOpen(false)}
             sx={{
-              width: "80%",
+              alignSelf: "center",
+              width: "100%",
               borderRadius: "10px",
               backgroundColor: colors.primary,
               color: colors.white,

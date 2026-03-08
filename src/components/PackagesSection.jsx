@@ -35,10 +35,10 @@ export default function PackagesSection() {
         <Typography
           textAlign="center"
           sx={{
-            fontSize: size.h0,
+            fontSize: { xs: size.h2, md: size.h0 },
             fontWeight: weight.bold,
             color: sayviaTheme.colors.secondary,
-            mt: 1,
+            mt: { xs: -3, md: 1},
           }}
         >
           Pilih Paket Terbaik untuk Hari Spesialmu!
@@ -46,7 +46,7 @@ export default function PackagesSection() {
 
         <Typography
           textAlign="center"
-          fontSize={size.h2}
+          fontSize={{ xs: size.h3, md: size.h2 }}
           fontWeight={weight.regular}
           mt={1.5}
         >
@@ -56,9 +56,9 @@ export default function PackagesSection() {
 
         <Typography
           textAlign="center"
-          fontSize={size.h2}
+          fontSize={{ xs: size.h3, md: size.h2 }}
           fontWeight={weight.regular}
-          mb={12}
+          mb={{ xs: 6, md: 12 }}
         >
           Pilih paket yang paling cocok untuk hari spesialmu!
         </Typography>
