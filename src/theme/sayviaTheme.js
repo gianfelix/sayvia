@@ -1,4 +1,6 @@
 //Warna
+import { createTheme } from "@mui/material/styles";
+
 export const colors = {
   primary: "#EB862C",
   secondary: "#2AC1B0",
@@ -34,14 +36,17 @@ export const size = {
   h4: "0.5rem",
 };
 
+export const font = createTheme({
+  fontFamily: "'Poppins', sans-serif",
+});
 
-const sayviaTheme = {
+const sayviaTheme = createTheme( {
   colors,
   typography: {
     fontFamily: "'Poppins', sans-serif",
   },
   weight,
   size,
-};
+});
 
 export default sayviaTheme;

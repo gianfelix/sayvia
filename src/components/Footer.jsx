@@ -5,6 +5,22 @@ const orange = "#e3710e";
 const teal = "#e8f1f0";
 const ash = "#808080";
 
+const navItems = [
+  { label: "Halaman Awal", id: "homepage" },
+  { label: "Keunggulan", id: "value" },
+  { label: "Harga", id: "package" },
+  { label: "Desain", id: "design" },
+  { label: "Alur Pemesanan", id: "order-flow" },
+  { label: "FAQ", id: "faq" },
+];
+
+const scrollToSection = (id) => {
+  const element = document.getElementById(id);
+  if (element) {
+    element.scrollIntoView({ behavior: "smooth" });
+  }
+};
+
 const Footer = () => {
   return (
     <Box sx={{ background: teal, pt: 7 }}>
@@ -49,22 +65,25 @@ const Footer = () => {
           </Typography>
 
           <Stack spacing={1.2}>
-            {[
-              "Halaman Awal",
-              "Keunggulan",
-              "Harga",
-              "Desain",
-              "Alur Pemesanan",
-              "FAQ",
-            ].map((item) => (
-              <Typography
-                key={item}
-                sx={{ fontSize: size.h3, fontWeight: weight.medium, color: ash, cursor: "pointer" }}
-              >
-                {item}
-              </Typography>
-            ))}
-          </Stack>
+  {navItems.map((item) => (
+    <Typography
+      key={item.id}
+      onClick={() => scrollToSection(item.id)}
+      sx={{
+        fontSize: size.h3,
+        fontWeight: weight.medium,
+        color: ash,
+        cursor: "pointer",
+        transition: "0.2s",
+        "&:hover": {
+          color: orange,
+        },
+      }}
+    >
+      {item.label}
+    </Typography>
+  ))}
+</Stack>
         </Box>
 
         {/* BANTUAN */}

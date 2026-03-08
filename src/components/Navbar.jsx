@@ -16,21 +16,42 @@ import sayviaTheme, { size, weight } from "../theme/sayviaTheme";
 
 const menuItems = ["Harga", "Desain", "FAQ"];
 
+const navItems = [
+  { label: "Harga", id: "package", type: "scroll" },
+  { label: "Desain", type: "route", path: "/desain" },
+  { label: "FAQ", id: "faq", type: "scroll" },
+];
+
+const handleNavigation = (item) => {
+  if (item.type === "scroll") {
+    const element = document.getElementById(item.id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  }
+
+  if (item.type === "route") {
+    window.location.href = item.path;
+  }
+
+  // setOpen(true);
+};
+
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const { colors } = useSayviaTheme();
 
-const [scrolled, setScrolled] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-useEffect(() => {
-  const handleScroll = () => {
-    setScrolled(window.scrollY > 1000);
-  };
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 1000);
+    };
 
-  window.addEventListener("scroll", handleScroll);
-  return () => window.removeEventListener("scroll", handleScroll);
-}, []);
-  
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <>
       <AppBar
@@ -39,9 +60,7 @@ useEffect(() => {
         sx={{
           backgroundColor: colors.backgroundPastel,
           backdropFilter: scrolled ? "blur(8px)" : "none",
-          boxShadow: scrolled
-            ? "0 4px 20px rgba(0,0,0,0.08)"
-            : "none",
+          boxShadow: scrolled ? "0 4px 20px rgba(0,0,0,0.08)" : "none",
           transition: "all 0.3s ease",
         }}
       >
@@ -54,7 +73,7 @@ useEffect(() => {
         >
           {/* LOGO */}
           <Box sx={{ display: "flex", alignItems: "center" }}>
-            <IconButton 
+            <IconButton
               href="/"
               disableRipple
               sx={{
@@ -63,7 +82,8 @@ useEffect(() => {
                 "&hover": {
                   backgroundColor: "transparent",
                 },
-              }} >
+              }}
+            >
               <img
                 src="/assets/icons/logo_say_hor.webp"
                 alt="Sayvia"
@@ -80,10 +100,10 @@ useEffect(() => {
               alignItems: "center",
             }}
           >
-            {menuItems.map((item) => (
+            {navItems.map((item) => (
               <Button
-                key={item}
-                component="button"
+                key={item.label}
+                onClick={() => handleNavigation(item)}
                 disableRipple
                 disableElevation
                 sx={{
@@ -93,19 +113,13 @@ useEffect(() => {
                   fontSize: size.h3,
                   fontWeight: weight.medium,
                   textTransform: "none",
-
-                  "&, &:hover, &:focus, &:active": {
-                    textDecoration: "none !important",
-                  },
-
                   border: "none",
                   boxShadow: "none",
                   background: "transparent",
-
                   transition: "color 0.3s ease, font-weight 0.3s ease",
 
                   "&::before": {
-                    content:'""',
+                    content: '""',
                     position: "absolute",
                     inset: 0,
                     backgroundColor: colors.primary,
@@ -121,12 +135,11 @@ useEffect(() => {
 
                   "&:hover": {
                     color: colors.white,
-                    fontSize: size.h3,
                     fontWeight: weight.semiBold,
-                  }
+                  },
                 }}
               >
-                {item}
+                {item.label}
               </Button>
             ))}
           </Box>
