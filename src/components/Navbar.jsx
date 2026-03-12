@@ -182,7 +182,6 @@ const Navbar = () => {
       >
         <Box
           sx={{
-            
             p: 3,
             height: "100%",
             display: "flex",
@@ -209,9 +208,9 @@ const Navbar = () => {
               }}
             >
               <img
-                src="/assets/icons/logo_say_hor.webp"
+                src="/assets/icons/Navhum_Logo.webp"
                 alt="Sayvia"
-                style={{ height: 28 }}
+                style={{ height: 38 }}
               />
             </IconButton>
           </Box>
@@ -237,7 +236,7 @@ const Navbar = () => {
                   py: 1.2,
                   // Glass card per item
                   background: "rgba(255, 255, 255, 0.5)",
-                  
+
                   backdropFilter: "blur(8px)",
                   transition: "background 0.2s ease, transform 0.2s ease",
                   "&:hover": {
