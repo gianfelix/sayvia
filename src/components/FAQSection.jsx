@@ -25,7 +25,7 @@ const allFaqs = faqs.map((faq, index) => ({ ...faq, originalIndex: index }));
 // ── Reusable accordion item ──────────────────────────────────────────────────
 function FaqItem({ faq, expanded, onChange }) {
   return (
-    <Accordion
+    <Accordion 
       expanded={expanded === faq.originalIndex}
       onChange={onChange(faq.originalIndex)}
       disableGutters
