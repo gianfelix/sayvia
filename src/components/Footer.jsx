@@ -1,5 +1,6 @@
 import { Box, Typography, Stack } from "@mui/material";
 import { colors, size, weight } from "../theme/sayviaTheme";
+import { contact } from "../data/contactSayvia";
 
 const orange = "#e3710e";
 const teal = "#e8f1f0";
@@ -21,18 +22,9 @@ const scrollToSection = (id) => {
   }
 };
 
-const contactItems = [
-  { icon: "assets/icons/1_WA.webp",    alt: "wa",      label: "WhatsApp",  value: "0800 0000 0000" },
-  { icon: "assets/icons/2_Email.webp", alt: "email",   label: "Email",     value: "sayvia.digital@gmail.com" },
-  { icon: "assets/icons/3_Ig.webp",    alt: "ig",      label: "Instagram", value: "sayvia.id" },
-  { icon: "assets/icons/4_Tt.webp",    alt: "tiktok",  label: "TikTok",    value: "@sayvia.id" },
-  { icon: "assets/icons/5_web.webp",   alt: "web",     label: "Website",   value: "www.sayvia.my.id" },
-];
-
 const Footer = () => {
   return (
     <Box sx={{ background: teal, pt: { xs: 6, md: 7 } }}>
-
       {/* ── MAIN FOOTER ── */}
       <Box
         sx={{
@@ -79,8 +71,10 @@ const Footer = () => {
               "& br": { display: { xs: "none", md: "block" } },
             }}
           >
-            Sayvia hadir sebagai cara baru kirim undangan digital<br />{" "}
-            yang <i>fresh</i>, <i>modern</i>, dan <i>anti-boring</i>. Semua dalam<br />
+            Sayvia hadir sebagai cara baru kirim undangan digital
+            <br /> yang <i>fresh</i>, <i>modern</i>, dan <i>anti-boring</i>.
+            Semua dalam
+            <br />
             satu tautan, praktis tanpa ribet.
           </Typography>
         </Box>
@@ -172,37 +166,50 @@ const Footer = () => {
               gap: { xs: 1.5, sm: 2 },
             }}
           >
-            {contactItems.map(({ icon, alt, label, value }) => (
-              <Stack key={alt} direction="row" spacing={1.5} alignItems="center">
-                <Box
-                  component="img"
-                  src={icon}
-                  alt={alt}
-                  sx={{ width: { xs: 32, md: 40 }, flexShrink: 0 }}
-                />
-                <Box>
-                  <Typography
-                    sx={{
-                      fontSize: { xs: "0.8rem", md: size.h3 },
-                      fontWeight: weight.semiBold,
-                      fontStyle: "italic",
-                      color: ash,
-                    }}
-                  >
-                    {label}
-                  </Typography>
-                  <Typography
-                    sx={{
-                      fontSize: { xs: "0.8rem", md: size.h3 },
-                      fontWeight: weight.medium,
-                      color: ash,
-                      wordBreak: "break-word",
-                    }}
-                  >
-                    {value}
-                  </Typography>
-                </Box>
-              </Stack>
+            {contact.map(({ icon, alt, label, value, link }) => (
+              <Box
+                key={alt}
+                component="a"
+                href={link}
+                target="_blank"
+                rel="noopener noreferrer"
+                sx={{
+                  textDecoration: "none",
+                  color: "inherit",
+                  transition: "0.2s",
+                }}
+              >
+                <Stack direction="row" spacing={1.5} alignItems="center">
+                  <Box
+                    component="img"
+                    src={icon}
+                    alt={alt}
+                    sx={{ width: { xs: 32, md: 40 }, flexShrink: 0 }}
+                  />
+                  <Box>
+                    <Typography
+                      sx={{
+                        fontSize: { xs: "0.8rem", md: size.h3 },
+                        fontWeight: weight.semiBold,
+                        fontStyle: "italic",
+                        color: ash,
+                      }}
+                    >
+                      {label}
+                    </Typography>
+                    <Typography
+                      sx={{
+                        fontSize: { xs: "0.8rem", md: size.h3 },
+                        fontWeight: weight.medium,
+                        color: ash,
+                        wordBreak: "break-word",
+                      }}
+                    >
+                      {value}
+                    </Typography>
+                  </Box>
+                </Stack>
+              </Box>
             ))}
           </Box>
         </Box>

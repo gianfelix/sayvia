@@ -12,6 +12,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import { useSayviaTheme } from "../theme/SayviaThemeProvider";
 import { size, weight } from "../theme/sayviaTheme";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const navItems = [
   { label: "Harga", id: "package", type: "scroll" },
@@ -19,20 +20,32 @@ const navItems = [
   { label: "FAQ", id: "faq", type: "scroll" },
 ];
 
-const handleNavigation = (item) => {
-  if (item.type === "scroll") {
-    const element = document.getElementById(item.id);
-    if (element) element.scrollIntoView({ behavior: "smooth" });
-  }
-  if (item.type === "route") {
-    window.location.href = item.path;
-  }
-};
-
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const { colors } = useSayviaTheme();
   const [scrolled, setScrolled] = useState(false);
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleNavigation = (item) => {
+    if (item.type === "scroll") {
+      if (location.pathname !== "/") {
+        navigate("/#" + item.id);
+        return;
+      }
+
+      const element = document.getElementById(item.id);
+
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+
+    if (item.type === "route") {
+      navigate(item.path);
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 1000);
