@@ -246,7 +246,7 @@ export default function Design() {
                           },
                         }}
                       >
-                        Gunakan
+                        Pilih Desain
                       </Button>
                     </CardContent>
                   </Card>
