@@ -3,8 +3,6 @@ import Navbar from "../components/Navbar";
 import {
   Box,
   Typography,
-  Container,
-  Grid,
   Button,
   Card,
   CardContent,
@@ -12,9 +10,8 @@ import {
   Chip,
   TextField,
   InputAdornment,
-  Select,
-  MenuItem,
   Stack,
+  Divider,
 } from "@mui/material";
 
 import SearchIcon from "@mui/icons-material/Search";
@@ -22,24 +19,40 @@ import SearchIcon from "@mui/icons-material/Search";
 import { colors, size, weight } from "../theme/sayviaTheme";
 import designs from "../data/designData";
 
-// ambil category unik
+// ambil unique data
 const categories = ["Semua", ...new Set(designs.map((d) => d.category))];
+const tags = ["Semua", "New", "Popular", "-"];
 
 export default function Design() {
   const [activeCategory, setActiveCategory] = useState("Semua");
+  const [activeTag, setActiveTag] = useState("Semua");
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState("default");
 
-  let filtered = designs.filter((d) =>
-    d.name.toLowerCase().includes(search.toLowerCase())
-  );
+  let filtered = [...designs];
 
+  // SEARCH
+  if (search) {
+    filtered = filtered.filter((d) =>
+      d.name.toLowerCase().includes(search.toLowerCase())
+    );
+  }
+
+  // CATEGORY
   if (activeCategory !== "Semua") {
     filtered = filtered.filter((d) => d.category === activeCategory);
   }
 
+  // TAG
+  if (activeTag !== "Semua") {
+    filtered = filtered.filter((d) => d.tag === activeTag);
+  }
+
+  // SORT
   if (sort === "az") {
-    filtered = [...filtered].sort((a, b) => a.name.localeCompare(b.name));
+    filtered.sort((a, b) => a.name.localeCompare(b.name));
+  } else if (sort === "za") {
+    filtered.sort((a, b) => b.name.localeCompare(a.name));
   }
 
   return (
@@ -50,8 +63,7 @@ export default function Design() {
       <Box
         sx={{
           textAlign: "center",
-          py: 8,
-          px: 2,
+          py: 4,
           background: colors.backgroundPastel,
         }}
       >
@@ -60,211 +72,241 @@ export default function Design() {
             fontSize: size.h1,
             fontWeight: weight.bold,
             color: colors.primary,
-            mb: 1,
           }}
         >
-          Pilih Desain Undangan
+          Galeri Desain
         </Typography>
 
-        <Typography
-          sx={{
-            fontSize: size.h3,
-            color: colors.textCalm,
-          }}
-        >
-          Temukan desain terbaik untuk momen spesialmu ✨
+        <Typography sx={{ fontSize: size.h3, color: colors.textCalm }}>
+          Pilih desain terbaik untuk momen spesialmu ✨
         </Typography>
       </Box>
 
-      <Container maxWidth="xl" sx={{ py: 5 }}>
-        <Grid container spacing={3}>
-          {/* SIDEBAR FILTER (LEBIH RAMPING) */}
-          <Grid item xs={4} md={2.5}>
-            <Box
-              sx={{
-                p: 2.5,
-                borderRadius: 3,
-                background: colors.white,
-                border: `1px solid ${colors.textMuted}30`,
-                position: "sticky",
-                top: 90,
-              }}
-            >
-              <Typography
+      {/* MAIN LAYOUT */}
+      <Box
+        sx={{
+          display: "flex",
+          gap: 4,
+          px: { xs: 2, md: 6 },
+          py: 4,
+        }}
+      >
+        {/* ================= LEFT FILTER ================= */}
+        <Box
+          sx={{
+            width: 250,
+            flexShrink: 0,
+            background: colors.white,
+            borderRadius: 3,
+            p: 3,
+            border: `1px solid ${colors.textMuted}30`,
+            position: "sticky",
+            top: 90,
+            height: "fit-content",
+          }}
+        >
+          <Typography
+            sx={{
+              fontWeight: weight.bold,
+              mb: 2,
+            }}
+          >
+            Semua Filter
+          </Typography>
+
+          {/* SEARCH */}
+          <TextField
+            placeholder="Cari desain..."
+            size="small"
+            fullWidth
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            sx={{ mb: 3 }}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SearchIcon />
+                </InputAdornment>
+              ),
+            }}
+          />
+
+          <Divider sx={{ mb: 2 }} />
+
+          {/* CATEGORY */}
+          <Typography sx={{ fontWeight: weight.semiBold, mb: 1 }}>
+            Kategori
+          </Typography>
+          <Stack spacing={1} mb={3}>
+            {categories.map((cat) => (
+              <Button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
                 sx={{
-                  fontWeight: weight.semiBold,
-                  fontSize: size.h3,
-                  mb: 2,
+                  justifyContent: "flex-start",
+                  textTransform: "none",
+                  fontSize: "0.8rem",
+                  borderRadius: 2,
+
+                  backgroundColor:
+                    activeCategory === cat
+                      ? colors.primary
+                      : "transparent",
+
+                  color:
+                    activeCategory === cat
+                      ? colors.white
+                      : colors.textCalm,
                 }}
               >
-                Filter
-              </Typography>
+                {cat}
+              </Button>
+            ))}
+          </Stack>
 
-              <Stack spacing={1}>
-                {categories.map((cat) => (
-                  <Button
-                    key={cat}
-                    fullWidth
-                    onClick={() => setActiveCategory(cat)}
-                    sx={{
-                      justifyContent: "flex-start",
-                      textTransform: "none",
-                      borderRadius: 2,
-                      fontSize: "0.8rem",
-
-                      backgroundColor:
-                        activeCategory === cat ? colors.primary : "transparent",
-
-                      color:
-                        activeCategory === cat ? colors.white : colors.textCalm,
-
-                      "&:hover": {
-                        backgroundColor:
-                          activeCategory === cat
-                            ? colors.buttonHover
-                            : `${colors.primary}15`,
-                      },
-                    }}
-                  >
-                    {cat}
-                  </Button>
-                ))}
-              </Stack>
-            </Box>
-          </Grid>
-
-          {/* MAIN CONTENT */}
-          <Grid item xs={8} md={9.5}>
-            {/* SEARCH + SORT */}
-            <Box
-              sx={{
-                display: "flex",
-                gap: 2,
-                mb: 3,
-                flexWrap: "wrap",
-                justifyContent: "space-between",
-              }}
-            >
-              <TextField
-                placeholder="Cari desain..."
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                size="small"
-                sx={{ width: 260 }}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <SearchIcon />
-                    </InputAdornment>
-                  ),
+          {/* TAG */}
+          <Typography sx={{ fontWeight: weight.semiBold, mb: 1 }}>
+            Tag
+          </Typography>
+          <Stack direction="row" flexWrap="wrap" gap={1} mb={3}>
+            {tags.map((tag) => (
+              <Chip
+                key={tag}
+                label={tag === "Semua" ? "All" : tag === "-" ? "None" : tag}
+                onClick={() => setActiveTag(tag)}
+                sx={{
+                  cursor: "pointer",
+                  backgroundColor:
+                    activeTag === tag ? colors.primary : "#eee",
+                  color:
+                    activeTag === tag ? colors.white : colors.textCalm,
                 }}
               />
+            ))}
+          </Stack>
 
-              <Select
-                value={sort}
-                onChange={(e) => setSort(e.target.value)}
-                size="small"
+          <Divider sx={{ mb: 2 }} />
+
+          {/* SORT */}
+          <Typography sx={{ fontWeight: weight.semiBold, mb: 1 }}>
+            Urutkan
+          </Typography>
+
+          <Stack spacing={1}>
+            <Button
+              onClick={() => setSort("az")}
+              sx={{ justifyContent: "flex-start", textTransform: "none" }}
+            >
+              Nama A - Z
+            </Button>
+
+            <Button
+              onClick={() => setSort("za")}
+              sx={{ justifyContent: "flex-start", textTransform: "none" }}
+            >
+              Nama Z - A
+            </Button>
+          </Stack>
+        </Box>
+
+        {/* ================= RIGHT CONTENT ================= */}
+        <Box sx={{ flex: 1 }}>
+          <Box
+            sx={{
+              display: "grid",
+              gridTemplateColumns: {
+                xs: "2fr",
+                sm: "repeat(4, 1fr)",
+                md: "repeat(6, 1fr)",
+              },
+              gap: 3,
+            }}
+          >
+            {filtered.map((design) => (
+              <Card
+                key={design.id}
+                sx={{
+                  borderRadius: 3,
+                  overflow: "hidden",
+                  transition: "0.3s",
+                  "&:hover": {
+                    transform: "translateY(-6px)",
+                    boxShadow: `0 10px 30px ${colors.primary}33`,
+                  },
+                }}
               >
-                <MenuItem value="default">Default</MenuItem>
-                <MenuItem value="az">A - Z</MenuItem>
-              </Select>
-            </Box>
+                <Box sx={{ position: "relative" }}>
+                  <CardMedia
+                    component="img"
+                    height="350"
+                    image={design.img}
+                  />
 
-            {/* GRID DESAIN */}
-            <Grid container spacing={2.5}>
-              {filtered.map((design) => (
-                <Grid item xs={12} sm={6} md={4} key={design.id}>
-                  <Card
+                  {design.tag !== "-" && (
+                    <Chip
+                      label={design.tag}
+                      size="small"
+                      sx={{
+                        position: "absolute",
+                        top: 10,
+                        left: 10,
+                        background: colors.primary,
+                        color: colors.white,
+                      }}
+                    />
+                  )}
+                </Box>
+
+                <CardContent>
+                  <Typography
                     sx={{
-                      borderRadius: 3,
-                      overflow: "hidden",
-                      transition: "0.3s",
-                      boxShadow: "0 4px 12px rgba(0,0,0,0.05)",
+                      fontWeight: weight.semiBold,
+                      fontSize: size.h3,
+                    }}
+                  >
+                    {design.name}
+                  </Typography>
 
+                  <Typography
+                    sx={{
+                      fontSize: "0.75rem",
+                      color: colors.textCalm,
+                      mb: 2,
+                    }}
+                  >
+                    {design.category}
+                  </Typography>
+
+                  <Button
+                    fullWidth
+                    variant="contained"
+                    sx={{
+                      background: colors.primary,
+                      textTransform: "none",
+                      fontSize: "0.8rem",
+                      fontWeight: weight.semiBold,
                       "&:hover": {
-                        transform: "translateY(-6px)",
-                        boxShadow: `0 12px 30px ${colors.primary}33`,
+                        background: colors.buttonHover,
                       },
                     }}
                   >
-                    <Box sx={{ position: "relative" }}>
-                      <CardMedia
-                        component="img"
-                        height="360"
-                        image={design.img}
-                      />
+                    Pilih Desain
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </Box>
 
-                      {/* TAG */}
-                      {design.tag !== "-" && (
-                        <Chip
-                          label={design.tag}
-                          size="small"
-                          sx={{
-                            position: "absolute",
-                            top: 10,
-                            left: 10,
-                            background: colors.primary,
-                            color: colors.white,
-                            fontWeight: 600,
-                            fontSize: "0.7rem",
-                          }}
-                        />
-                      )}
-                    </Box>
-
-                    <CardContent>
-                      <Typography
-                        sx={{
-                          fontWeight: weight.semiBold,
-                          fontSize: size.h3,
-                        }}
-                      >
-                        {design.name}
-                      </Typography>
-
-                      <Typography
-                        sx={{
-                          fontSize: "0.75rem",
-                          color: colors.textCalm,
-                          mb: 1.5,
-                        }}
-                      >
-                        {design.category}
-                      </Typography>
-
-                      <Button
-                        fullWidth
-                        variant="contained"
-                        sx={{
-                          background: colors.primary,
-                          textTransform: "none",
-                          fontSize: "0.8rem",
-                          fontWeight: weight.semiBold,
-
-                          "&:hover": {
-                            background: colors.buttonHover,
-                          },
-                        }}
-                      >
-                        Pilih Desain
-                      </Button>
-                    </CardContent>
-                  </Card>
-                </Grid>
-              ))}
-            </Grid>
-
-            {/* EMPTY STATE */}
-            {filtered.length === 0 && (
-              <Box sx={{ textAlign: "center", py: 10 }}>
-                <Typography color={colors.textMuted}>
-                  Desain tidak ditemukan 😢
-                </Typography>
-              </Box>
-            )}
-          </Grid>
-        </Grid>
-      </Container>
+          {/* EMPTY */}
+          {filtered.length === 0 && (
+            <Box sx={{ textAlign: "center", py: 10 }}>
+              <Typography color={colors.textMuted} sx={{ fontSize: "2rem" }}>
+                Tidak ada desain ditemukan 😢
+              </Typography>
+            </Box>
+          )}
+        </Box>
+      </Box>
     </Box>
   );
 }
