@@ -21,6 +21,7 @@ import {
 
 import { colors, size, weight } from "../theme/sayviaTheme";
 import designs from "../data/designData";
+import OrderDialog from "../components/OrderDialog";
 
 // unique data
 const events = ["Semua", ...new Set(designs.map((d) => d.event))];
@@ -35,11 +36,22 @@ export default function Design() {
   const [sort, setSort] = useState("default");
   const [showFilter, setShowFilter] = useState(true);
 
+  const [open, setOpen] = useState(false);
+  const [selectedDesign, setSelectedDesign] = useState(null);
+
+  const [form, setForm] = useState({
+    name: "",
+    phone: "",
+    date: "",
+    location: "",
+    note: "",
+  });
+
   let filtered = [...designs];
 
   if (search) {
     filtered = filtered.filter((d) =>
-      d.name.toLowerCase().includes(search.toLowerCase())
+      d.name.toLowerCase().includes(search.toLowerCase()),
     );
   }
 
@@ -61,13 +73,55 @@ export default function Design() {
     filtered.sort((a, b) => b.name.localeCompare(a.name));
   }
 
+  const handleOpen = (design) => {
+    setSelectedDesign(design);
+    setForm({
+      name: "",
+      phone: "",
+      date: "",
+      location: "",
+      note: "",
+    });
+    setOpen(true);
+  };
+
+  const handleClose = () => setOpen(false);
+
+  const handleSubmit = () => {
+    const payload = {
+      ...form,
+      design: selectedDesign?.name,
+      event: selectedDesign?.event,
+      package: selectedDesign?.package,
+    };
+
+    if (!payload.name || !payload.phone || !payload.date || !payload.location) {
+      alert("Mohon lengkapi semua field wajib!");
+      return;
+    }
+    
+    console.log("DATA PESANAN:", payload);
+    alert("Pesanan berhasil dikirim!");
+
+    setOpen(false);
+    
+  };
+
   return (
     <Box sx={{ background: colors.backgroundLight, minHeight: "100vh" }}>
       <Navbar />
 
       {/* HERO */}
-      <Box sx={{ textAlign: "center", py: 4, background: colors.backgroundPastel }}>
-        <Typography sx={{ fontSize: size.h1, fontWeight: weight.bold, color: colors.primary }}>
+      <Box
+        sx={{ textAlign: "center", py: 4, background: colors.backgroundPastel }}
+      >
+        <Typography
+          sx={{
+            fontSize: size.h1,
+            fontWeight: weight.bold,
+            color: colors.primary,
+          }}
+        >
           Galeri Desain
         </Typography>
         <Typography sx={{ fontSize: size.h3, color: colors.textCalm }}>
@@ -88,7 +142,6 @@ export default function Design() {
 
       {/* MAIN */}
       <Box sx={{ display: "flex", gap: 4, px: { xs: 2, md: 6 }, py: 3 }}>
-
         {/* FILTER */}
         {showFilter && (
           <Box
@@ -194,9 +247,7 @@ export default function Design() {
                         backgroundColor:
                           activeTag === tag ? colors.primary : "#eee",
                         color:
-                          activeTag === tag
-                            ? colors.white
-                            : colors.textCalm,
+                          activeTag === tag ? colors.white : colors.textCalm,
                       }}
                     />
                   ))}
@@ -249,11 +300,7 @@ export default function Design() {
               >
                 {/* IMAGE + TAG */}
                 <Box sx={{ position: "relative" }}>
-                  <CardMedia
-                    component="img"
-                    height="300"
-                    image={design.img}
-                  />
+                  <CardMedia component="img" height="300" image={design.img} />
 
                   {design.tag !== "-" && (
                     <Chip
@@ -273,9 +320,7 @@ export default function Design() {
 
                 {/* CONTENT */}
                 <CardContent>
-                  <Typography fontWeight={600}>
-                    {design.name}
-                  </Typography>
+                  <Typography fontWeight={600}>{design.name}</Typography>
 
                   <Typography fontSize="0.8rem" color="gray">
                     {design.event}
@@ -296,6 +341,7 @@ export default function Design() {
                   <Button
                     fullWidth
                     variant="contained"
+                    onClick={() => handleOpen(design)}
                     sx={{
                       background: colors.primary,
                       textTransform: "none",
@@ -320,6 +366,15 @@ export default function Design() {
               </Typography>
             </Box>
           )}
+
+          <OrderDialog
+            open={open}
+            onClose={handleClose}
+            onSubmit={handleSubmit}
+            selectedDesign={selectedDesign}
+            form={form}
+            setForm={setForm}
+          />
         </Box>
       </Box>
     </Box>
