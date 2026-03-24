@@ -177,12 +177,12 @@ export default function OrderDialog({ open, onClose, selectedDesign }) {
         <Stack spacing={2.5}>
 
           {/* ── INFORMASI DASAR ── */}
-          <Box>
-            <Typography sx={{ fontSize: "0.7rem", fontWeight: weight.semiBold, color: "#aaa", letterSpacing: "1px", textTransform: "uppercase", mb: 1.5 }}>
+          <Box >
+            <Typography sx={{ fontSize: "0.7rem", fontWeight: weight.semiBold, color: "#aaa", letterSpacing: "1px", textTransform: "uppercase", mb: 1.5, mt: 1 }}>
               Informasi Dasar
             </Typography>
 
-            <Stack spacing={1.5}>
+            <Stack spacing={1.5} >
               <TextField label="Nama Lengkap *" fullWidth size="small" value={form.name}
                 onChange={(e) => set("name", e.target.value)} sx={fieldSx} />
 

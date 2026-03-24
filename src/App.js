@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import Design from "./pages/Design";
+import PreviewPage from "./pages/PreviewPage";
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/desain" element={<Design />} />
+        <Route path="/preview/:slug" element={<PreviewPage />} />
       </Routes>
     </BrowserRouter>
   );
