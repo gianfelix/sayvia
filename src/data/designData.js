@@ -6,6 +6,7 @@ const designs = [
     package: "Basic",
     img: "assets/undangan/basic_1.webp",
     tag: "Popular",
+    previewUrl: "https://sayvia.my.id/preview/blue_serenity",
   },
   {
     id: 2,
@@ -14,6 +15,7 @@ const designs = [
     package: "Basic",
     img: "assets/undangan/basic_2.webp",
     tag: "New",
+    previewUrl: "https://sayvia.my.id/preview/tea_green_blossom",
   },
   {
     id: 3,
@@ -22,6 +24,7 @@ const designs = [
     package: "Basic",
     img: "assets/undangan/basic_3.webp",
     tag: "New",
+    previewUrl: "https://sayvia.my.id/preview/white_chalk",
   },
   {
     id: 4,
@@ -30,6 +33,7 @@ const designs = [
     package: "Basic",
     img: "https://picsum.photos/400/700?4",
     tag: "-",
+    previewUrl: "https://sayvia.my.id/preview/rustic_wood",
   },
   {
     id: 5,
@@ -38,6 +42,7 @@ const designs = [
     package: "Basic",
     img: "https://picsum.photos/400/700?5",
     tag: "-",
+    previewUrl: "https://sayvia.my.id/preview/natural_wood",
   },
   {
     id: 6,
@@ -46,6 +51,7 @@ const designs = [
     package: "Glow-Up",
     img: "https://picsum.photos/400/700?6",
     tag: "-",
+    previewUrl: "https://sayvia.my.id/preview/amber_rose",
   },
   {
     id: 7,
@@ -54,6 +60,7 @@ const designs = [
     package: "Basic",
     img: "https://picsum.photos/400/700?7",
     tag: "Popular",
+    previewUrl: "https://sayvia.my.id/preview/yellow_sunset",
   },
   {
     id: 8,
@@ -62,6 +69,7 @@ const designs = [
     package: "All Out",
     img: "https://picsum.photos/400/700?8",
     tag: "New",
+    previewUrl: "https://sayvia.my.id/preview/zephyr_sky",
   },
   {
     id: 9,
@@ -70,14 +78,16 @@ const designs = [
     package: "Glow-Up",
     img: "https://picsum.photos/400/700?9",
     tag: "-",
+    previewUrl: "https://sayvia.my.id/preview/tropical_paradise",
   },
   {
     id: 10,
     name: "Rustic Wood",
-      event: "Engagement",
+    event: "Engagement",
     package: "Basic",
     img: "https://picsum.photos/400/700?10",
     tag: "-",
+    previewUrl: "https://sayvia.my.id/preview/rustic_wood",
   },
   {
     id: 11,
@@ -86,6 +96,7 @@ const designs = [
     package: "Basic",
     img: "https://picsum.photos/400/700?11",
     tag: "-",
+    previewUrl: "https://sayvia.my.id/preview/midnight_azure",
   },
   {
     id: 12,
@@ -94,6 +105,7 @@ const designs = [
     package: "Glow-Up",
     img: "https://picsum.photos/400/700?12",
     tag: "-",
+    previewUrl: "https://sayvia.my.id/preview/ivory_lace",
   },
   {
     id: 13,
@@ -102,6 +114,7 @@ const designs = [
     package: "Basic",
     img: "https://picsum.photos/400/700?13",
     tag: "Popular",
+    previewUrl: "https://sayvia.my.id/preview/black_white",
   },
   {
     id: 14,
@@ -110,6 +123,7 @@ const designs = [
     package: "All Out",
     img: "https://picsum.photos/400/700?14",
     tag: "New",
+    previewUrl: "https://sayvia.my.id/preview/sakura_bloom",
   },
   {
     id: 15,
@@ -118,6 +132,7 @@ const designs = [
     package: "Glow-Up",
     img: "https://picsum.photos/400/700?15",
     tag: "-",
+    previewUrl: "https://sayvia.my.id/preview/sage_minimal",
   },
 ];
 
