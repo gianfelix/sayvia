@@ -10,14 +10,17 @@ import "@fontsource/poppins/500.css";
 import "@fontsource/poppins/600.css";
 import "@fontsource/poppins/700.css";
 import { ThemeProvider } from "@mui/material";
+import { OrderProvider } from "./context/OrderContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <ThemeProvider theme={sayviaTheme}>
-      <App />
+      <OrderProvider>
+        <App />
+      </OrderProvider>
     </ThemeProvider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );
 
 // If you want to start measuring performance in your app, pass a function
