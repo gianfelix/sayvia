@@ -59,6 +59,16 @@ export default function Login() {
         <Button fullWidth variant="contained" onClick={handleLogin}>
           Login
         </Button>
+        
+        {/* Link untuk kembali ke Home Utama */}
+        <Button
+          fullWidth
+          variant="outlined"
+          sx={{ mt: 2 }}
+          onClick={() => navigate("/")}
+        >
+          Kembali ke Home Page
+        </Button>
       </Paper>
     </Box>
   );
