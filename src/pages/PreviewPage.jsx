@@ -5,11 +5,13 @@ import TemplateBlueSerenity from "../components/templates/TemplateBlueSerenity";
 import TemplateTeaGreenBlossom from "../components/templates/TemplateTeaGreenBlossom";
 import invitations from "../data/invitationData";
 import AO_1 from "../components/templates/all-out/AO-1/AO-1";
+import GU_1 from "../components/templates/glow-up/GU-1/GU-1";
 // Daftarkan semua template di sini
 const templateMap = {
   "blue-serenity": TemplateBlueSerenity,
   "tea-green-blossom": TemplateTeaGreenBlossom,
   "white-chalk": AO_1,
+  "yellow-sunset": GU_1
   // tambahkan template lain seiring dibuat
 };
 
