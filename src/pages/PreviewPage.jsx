@@ -4,11 +4,12 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import TemplateBlueSerenity from "../components/templates/TemplateBlueSerenity";
 import TemplateTeaGreenBlossom from "../components/templates/TemplateTeaGreenBlossom";
 import invitations from "../data/invitationData";
-
+import AO_1 from "../components/templates/all-out/AO-1/AO-1";
 // Daftarkan semua template di sini
 const templateMap = {
   "blue-serenity": TemplateBlueSerenity,
   "tea-green-blossom": TemplateTeaGreenBlossom,
+  "white-chalk": AO_1,
   // tambahkan template lain seiring dibuat
 };
 
