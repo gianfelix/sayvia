@@ -7,11 +7,19 @@ const steps = [
     desc: (
       <>
         Hubungi tim Sayvia melalui{" "}
-        <span style={{ color: "#068f7f", fontWeight: weight.bold, fontStyle: "italic" }}>
+        <span
+          style={{
+            color: "#068f7f",
+            fontWeight: weight.bold,
+            fontStyle: "italic",
+          }}
+        >
           WhatsApp
         </span>{" "}
         atau klik tombol{" "}
-        <span style={{ color: "#068f7f", fontWeight: 600 }}>Pesan Sekarang</span>{" "}
+        <span style={{ color: "#068f7f", fontWeight: 600 }}>
+          Pesan Sekarang
+        </span>{" "}
         untuk memesan undangan digital.
       </>
     ),
@@ -21,11 +29,17 @@ const steps = [
     title: "Isi Data, Pilih Paket, & Tentukan Desain",
     desc: (
       <>
-        <span style={{ color: "#068f7f" }}><b>Isi formulir</b></span>{" "}
+        <span style={{ color: "#068f7f" }}>
+          <b>Isi formulir</b>
+        </span>{" "}
         yang disediakan, lalu{" "}
-        <span style={{ color: "#068f7f" }}><b>pilih paket</b></span>{" "}
+        <span style={{ color: "#068f7f" }}>
+          <b>pilih paket</b>
+        </span>{" "}
         yang diinginkan, dan{" "}
-        <span style={{ color: "#068f7f" }}><b>pilih desain</b></span>{" "}
+        <span style={{ color: "#068f7f" }}>
+          <b>pilih desain</b>
+        </span>{" "}
         yang kamu sukai.
       </>
     ),
@@ -35,9 +49,13 @@ const steps = [
     title: "Bayar & Konfirmasi",
     desc: (
       <>
-        <span style={{ color: "#068f7f", fontWeight: weight.bold }}>Lakukan pembayaran</span>{" "}
+        <span style={{ color: "#068f7f", fontWeight: weight.bold }}>
+          Lakukan pembayaran
+        </span>{" "}
         setelah <i>invoice</i> dikirimkan dan{" "}
-        <span style={{ color: "#068f7f", fontWeight: weight.bold }}>kirim bukti pembayaran</span>{" "}
+        <span style={{ color: "#068f7f", fontWeight: weight.bold }}>
+          kirim bukti pembayaran
+        </span>{" "}
         kepada tim Sayvia.
       </>
     ),
@@ -48,9 +66,13 @@ const steps = [
     desc: (
       <>
         Tim Sayvia{" "}
-        <span style={{ color: "#068f7f", fontWeight: 600 }}>langsung mengerjakan</span>{" "}
+        <span style={{ color: "#068f7f", fontWeight: 600 }}>
+          langsung mengerjakan
+        </span>{" "}
         undangan digitalmu sampai{" "}
-        <span style={{ color: "#068f7f", fontWeight: 600 }}>siap dibagikan</span>{" "}
+        <span style={{ color: "#068f7f", fontWeight: 600 }}>
+          siap dibagikan
+        </span>{" "}
         kepada tamu.
       </>
     ),
@@ -100,13 +122,19 @@ export default function OrderFlow() {
               <span style={{ color: colors.primary }}>langsung jadi</span>
               <span>!</span>
               {/* hide manual <br> on mobile */}
-              <Box component="span" sx={{ display: { xs: "none", md: "inline" } }}>
+              <Box
+                component="span"
+                sx={{ display: { xs: "none", md: "inline" } }}
+              >
                 <br />
               </Box>{" "}
               Segampang itu —{" "}
               <span style={{ color: colors.secondary }}>yuk mulai pesan</span>{" "}
               undangan
-              <Box component="span" sx={{ display: { xs: "none", md: "inline" } }}>
+              <Box
+                component="span"
+                sx={{ display: { xs: "none", md: "inline" } }}
+              >
                 <br />
               </Box>{" "}
               digital kamu{" "}
@@ -131,7 +159,16 @@ export default function OrderFlow() {
                 mx: "auto",
               }}
             >
-              Mockup Image
+              <img
+                src="https://images.unsplash.com/photo-1522058171200-e61f77c7353d?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="order flow mockup"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  borderRadius: 24,
+                }}
+              />
             </Box>
           </Box>
 

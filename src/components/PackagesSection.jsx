@@ -12,6 +12,7 @@ import {
 import sayviaTheme, { size, weight } from "../theme/sayviaTheme";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import packages from "../data/packageData";
+import NavbarOrderDialog from "./NavbarOrderDialog";
 
 const colors = {
   orange: "#eb862c",
@@ -21,7 +22,7 @@ const colors = {
 
 export default function PackagesSection() {
   const [expanded, setExpanded] = useState({});
-
+  const [orderOpen, setOrderOpen] = useState(false);
   return (
     <section id="package">
       <Box
@@ -38,7 +39,7 @@ export default function PackagesSection() {
             fontSize: { xs: size.h2, md: size.h0 },
             fontWeight: weight.bold,
             color: sayviaTheme.colors.secondary,
-            mt: { xs: -3, md: 1},
+            mt: { xs: -3, md: 1 },
           }}
         >
           Pilih Paket Terbaik untuk Hari Spesialmu!
@@ -196,6 +197,7 @@ export default function PackagesSection() {
                   {/* Button */}
                   <Button
                     fullWidth
+                    onClick={() => setOrderOpen(true)}
                     sx={{
                       mb: 6,
                       bgcolor: isHighlight
@@ -361,6 +363,9 @@ export default function PackagesSection() {
           })}
         </Box>
       </Box>
+
+      {/* ORDER DIALOG */}
+      <NavbarOrderDialog open={orderOpen} onClose={() => setOrderOpen(false)} />
     </section>
   );
 }
